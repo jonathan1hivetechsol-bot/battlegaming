@@ -171,7 +171,7 @@ export default function AccountsGrid({ initialAccounts }: AccountsGridProps) {
             {displayedAccounts.map((account) => (
               <div
                 key={account.id}
-                className="group relative bg-slate-900/40 border border-slate-800/50 rounded-2xl p-6 hover:border-[#FF7828]/50 hover:shadow-[0_0_20px_rgba(255,120,40,0.1)] transition-all duration-300 overflow-hidden"
+                className="group relative bg-slate-900/40 border-2 border-slate-600 rounded-2xl p-6 hover:border-[#FF7828] hover:shadow-[0_0_20px_rgba(255,120,40,0.3)] transition-all duration-300 overflow-hidden"
               >
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-800/10 to-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
