@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import CursorGlow from "./components/CursorGlow";
+import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { OrganizationSchema } from "./components/SchemaMarkup";
@@ -69,6 +70,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0d071a] text-white" suppressHydrationWarning>
+        {/* Scroll to Top on Navigation */}
+        <ScrollToTop />
+        
         {/* Custom Cursor Glow - Ultra High Z-Index for Universal Top Visibility */}
         <CursorGlow />
         
