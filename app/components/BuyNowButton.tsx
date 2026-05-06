@@ -17,8 +17,8 @@ export default function BuyNowButton({
   platform,
   slug,
 }: BuyNowButtonProps) {
-  // WhatsApp number with country code
-  const whatsappNumber = '923184445800'; // Pakistan WhatsApp Business
+  // WhatsApp number - correct number
+  const whatsappNumber = '17808511699'; // BattleGaming WhatsApp
   
   // Create pre-filled message with exact format
   const message = `Hi BattleGaming, I want to buy the ${gameVersion} account with ${wins} wins on ${platform} for the ${region} region. Is it available?`;
