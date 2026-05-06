@@ -37,10 +37,10 @@ export default function Navbar() {
       country: 'United States',
       icon: '🇺🇸',
       pages: [
-        { name: 'USA Accounts', slug: '/accounts/usa-all' },
-        { name: 'California', slug: '/accounts/california-all' },
-        { name: 'Texas', slug: '/accounts/texas-all' },
-        { name: 'New York', slug: '/accounts/newyork-all' },
+        { name: 'USA Accounts', slug: '/accounts/region/usa' },
+        { name: 'California', slug: '/accounts/region/california' },
+        { name: 'Texas', slug: '/accounts/region/texas' },
+        { name: 'New York', slug: '/accounts/region/newyork' },
       ],
     },
     {
@@ -48,9 +48,9 @@ export default function Navbar() {
       country: 'United Kingdom',
       icon: '🇬🇧',
       pages: [
-        { name: 'UK Accounts', slug: '/accounts/uk-all' },
-        { name: 'London', slug: '/accounts/london-all' },
-        { name: 'Manchester', slug: '/accounts/manchester-all' },
+        { name: 'UK Accounts', slug: '/accounts/region/uk' },
+        { name: 'London', slug: '/accounts/region/london' },
+        { name: 'Manchester', slug: '/accounts/region/manchester' },
       ],
     },
   ];
