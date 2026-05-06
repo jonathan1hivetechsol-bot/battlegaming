@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { SchemaMarkup } from '../../components/SchemaMarkup'
 import BuyNowButton from '../../components/BuyNowButton'
+import ProductWhatsAppButton from '../../components/ProductWhatsAppButton'
 
 // Cache revalidation time (1 hour). PSEO ke liye best hai.
 export const revalidate = 3600;
@@ -195,6 +196,17 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                 platform={account.platform}
                 slug={resolvedParams.slug}
               />
+
+              {/* WhatsApp Chat Button */}
+              <div className="mt-4">
+                <ProductWhatsAppButton
+                  productTitle={account.meta_title}
+                  game={account.game_version}
+                  platform={account.platform}
+                  wins={account.wins}
+                  price={account.price}
+                />
+              </div>
 
               {/* Stock Status */}
               <div className="mt-6 text-center">
