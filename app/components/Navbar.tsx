@@ -5,12 +5,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/app/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import SearchModal from './SearchModal';
 
 export default function Navbar() {
   const router = useRouter();
   const { isAuthenticated, userProfile, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeMobileRegion, setActiveMobileRegion] = useState<string | null>(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -247,8 +249,12 @@ export default function Navbar() {
 
           {/* ========== RIGHT SECTION ========== */}
           <div className="flex items-center gap-4 pointer-events-auto">
-            {/* Search Icon */}
-            <button className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 transition-colors pointer-events-auto">
+            {/* Search Icon - Desktop & Mobile */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 transition-colors pointer-events-auto"
+              title="Search accounts"
+            >
               <svg
                 className="w-5 h-5 text-gray-300 hover:text-white"
                 fill="none"
@@ -533,6 +539,9 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </nav>
   );
 }
