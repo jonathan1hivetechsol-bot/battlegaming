@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
 import CursorGlow from "./components/CursorGlow";
 import Footer from "./components/Footer";
+import PagesMenu from "./components/PagesMenu";
 import { OrganizationSchema } from "./components/SchemaMarkup";
 import "./globals.css";
 
@@ -69,7 +70,7 @@ export default function RootLayout({
                 </a>
                 <a href="/about" className="relative group pointer-events-auto text-gray-300 hover:text-[#FF7828] font-semibold tracking-wide text-sm uppercase transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)]">About Us</a>
                 <a href="/tournament" className="relative group pointer-events-auto text-gray-300 hover:text-[#FF7828] font-semibold tracking-wide text-sm uppercase transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)]">Tournament</a>
-                <a href="#" className="relative group pointer-events-auto text-gray-300 hover:text-[#FF7828] font-semibold tracking-wide text-sm uppercase transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)]">Pages</a>
+                <PagesMenu />
                 <a href="/news" className="relative group pointer-events-auto text-gray-300 hover:text-[#FF7828] font-semibold tracking-wide text-sm uppercase transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)]">News</a>
                 <a href="/contact" className="relative group pointer-events-auto text-gray-300 hover:text-[#FF7828] font-semibold tracking-wide text-sm uppercase transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)]">Contact</a>
               </div>
