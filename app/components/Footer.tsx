@@ -60,8 +60,9 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li><a href="/about" className="text-gray-400 hover:text-[#FF7828] transition-colors">About Us</a></li>
               <li><a href="/contact" className="text-gray-400 hover:text-[#FF7828] transition-colors">Contact Support</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#FF7828] transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#FF7828] transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy" className="text-gray-400 hover:text-[#FF7828] transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="text-gray-400 hover:text-[#FF7828] transition-colors">Terms of Service</a></li>
+              <li><a href="/cookies" className="text-gray-400 hover:text-[#FF7828] transition-colors">Cookie Policy</a></li>
             </ul>
           </div>
         </div>
