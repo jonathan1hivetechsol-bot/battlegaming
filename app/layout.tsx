@@ -4,6 +4,7 @@ import CursorGlow from "./components/CursorGlow";
 import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 import { OrganizationSchema } from "./components/SchemaMarkup";
 import { AuthProvider } from "./context/AuthContext";
 import "./globals.css";
@@ -89,19 +90,10 @@ export default function RootLayout({
 
           {/* Organization Schema Markup */}
           <OrganizationSchema />
+          
+          {/* WhatsApp Floating Button */}
+          <WhatsAppButton />
         </AuthProvider>
-
-        {/* WhatsApp Floating Button */}
-        <a
-          href="https://wa.me/17808511699?text=I%20am%20interested%20in%20BattleGaming%20accounts"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Contact us on WhatsApp"
-          className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20BA5C] text-white font-bold text-xs px-4 py-3 rounded-full shadow-lg shadow-green-500/50 z-40 flex items-center gap-2 transition-all duration-300 hover:scale-110"
-        >
-          <span>💬</span>
-          <span>WhatsApp Only</span>
-        </a>
       </body>
     </html>
   );

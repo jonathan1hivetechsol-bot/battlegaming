@@ -177,13 +177,15 @@ function generateSlug(game, wins, platform, region, intent) {
 }
 
 // ========================================
-// PRICING LOGIC (Dynamic Based on Wins)
+// PRICING LOGIC (Dynamic Based on Wins - Max $20)
 // ========================================
 function calculatePrice(wins, region) {
   const basePrice = 9.99;
   const winsMultiplier = wins * 0.5;
   const regionMultiplier = region.code === 'london' || region.code === 'usa' ? 1.05 : 1.0;
-  return parseFloat((basePrice + winsMultiplier) * regionMultiplier).toFixed(2);
+  const price = parseFloat((basePrice + winsMultiplier) * regionMultiplier);
+  // Cap price at $20 maximum
+  return Math.min(price, 20).toFixed(2);
 }
 
 // ========================================
