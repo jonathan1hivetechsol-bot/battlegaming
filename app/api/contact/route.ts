@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface ContactRequest {
   name: string;
   email: string;
@@ -50,9 +48,10 @@ Submission Time: ${new Date().toLocaleString('en-US', { timeZone: 'America/Denve
 IP: ${request.headers.get('x-forwarded-for') || 'Unknown'}
 `;
 
-    // Try to send via Resend
+    // Try to send via Resend (only if API key is configured)
     if (process.env.RESEND_API_KEY) {
       try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
         const result = await resend.emails.send({
           from: 'noreply@battlegaming.store',
           to: 'digizaro.co@gmail.com',
