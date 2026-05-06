@@ -52,8 +52,12 @@ IP: ${request.headers.get('x-forwarded-for') || 'Unknown'}
     if (process.env.RESEND_API_KEY) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
+        
+        // Use Resend's onboarding domain format (works without verification)
+        const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+        
         const result = await resend.emails.send({
-          from: 'noreply@battlegaming.store',
+          from: fromEmail,
           to: 'digizaro.co@gmail.com',
           replyTo: body.email,
           subject: `[BattleGaming Contact] ${body.subject}`,
@@ -77,8 +81,8 @@ IP: ${request.headers.get('x-forwarded-for') || 'Unknown'}
         });
 
         if (result.error) {
-          console.error('Resend error:', result.error);
-          throw new Error(`Resend error: ${result.error.message}`);
+          console.error('❌ Resend error:', result.error);
+          throw new Error(`Resend failed: ${JSON.stringify(result.error)}`);
         }
 
         console.log('✅ Email sent via Resend:', result.data?.id);
@@ -91,9 +95,10 @@ IP: ${request.headers.get('x-forwarded-for') || 'Unknown'}
           },
           { status: 200 }
         );
-      } catch (resendError) {
-        console.error('❌ Resend sending failed:', resendError);
-        // Continue to fallback below
+      } catch (resendError: any) {
+        console.error('❌ Resend sending failed:', resendError.message || resendError);
+        // Log detailed error but don't fail - continue to provide user feedback
+        console.error('Full error:', JSON.stringify(resendError, null, 2));
       }
     }
 
