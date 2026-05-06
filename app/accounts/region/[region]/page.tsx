@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { use } from 'react';
 import AccountsGrid from '@/app/components/AccountsGrid';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -6,14 +7,15 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 interface RegionPageProps {
-  params: {
+  params: Promise<{
     region: string;
-  };
+  }>;
 }
 
 // Metadata for SEO
 export async function generateMetadata({ params }: RegionPageProps) {
-  const regionName = params.region.charAt(0).toUpperCase() + params.region.slice(1).replace(/-/g, ' ');
+  const resolvedParams = await params;
+  const regionName = resolvedParams.region.charAt(0).toUpperCase() + resolvedParams.region.slice(1).replace(/-/g, ' ');
   
   return {
     title: `Buy Verified Gaming Accounts in ${regionName} | BattleGaming`,
@@ -22,7 +24,7 @@ export async function generateMetadata({ params }: RegionPageProps) {
       title: `Gaming Accounts in ${regionName} | BattleGaming`,
       description: `Find verified gaming accounts in ${regionName} with instant delivery and 24/7 support.`,
       type: 'website',
-      url: `https://battlegaming.store/accounts/region/${params.region}`,
+      url: `https://battlegaming.store/accounts/region/${resolvedParams.region}`,
     },
   };
 }
@@ -58,7 +60,8 @@ const regionNames: Record<string, string> = {
 };
 
 export default async function RegionPage({ params }: RegionPageProps) {
-  const regionCode = regionMap[params.region.toLowerCase()];
+  const resolvedParams = await params;
+  const regionCode = regionMap[resolvedParams.region.toLowerCase()];
   const regionName = regionNames[regionCode] || 'Accounts';
 
   if (!regionCode) {
