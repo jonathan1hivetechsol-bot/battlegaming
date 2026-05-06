@@ -137,7 +137,33 @@ function generateLongFormContent(game, wins, platform, region, intent) {
   const body = template.body(game, wins, platform, region, intent);
   const trust = template.trust(game, wins, platform, region, intent);
 
-  return `${intro}${body} ${trust}`;
+  // Return structured HTML content with proper headings and paragraphs
+  return `
+<h2>Premium ${game} Account on ${platform} for ${region.name}</h2>
+
+<p>${intro}</p>
+
+<h3>Account Features & Benefits</h3>
+<p>${body}</p>
+
+<h3>Why Choose BattleGaming?</h3>
+<p>${trust}</p>
+
+<h3>Key Highlights</h3>
+<ul>
+  <li>✓ 100% Verified Accounts</li>
+  <li>✓ Instant Delivery (3-5 minutes)</li>
+  <li>✓ Secure Payment & Account Transfer</li>
+  <li>✓ 24/7 Professional Support</li>
+  <li>✓ Lifetime Account Warranty</li>
+  <li>✓ 30-Day Money-Back Guarantee</li>
+  <li>✓ Zero Ban Risk History</li>
+  <li>✓ Regional Server Optimization</li>
+</ul>
+
+<h3>Ready to Get Started?</h3>
+<p>Join thousands of ${region.country} gamers who trust BattleGaming for verified gaming accounts. Our streamlined process ensures you get your ${game} account within minutes of purchase, complete with full support and lifetime protection.</p>
+  `.trim();
 }
 
 // ========================================

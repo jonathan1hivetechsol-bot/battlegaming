@@ -152,9 +152,9 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
               {account.meta_title}
             </h1>
             
-            <p className="text-lg text-gray-300 leading-relaxed bg-[#1a1a3e]/40 p-6 rounded-lg border border-[#FF7828]/20">
-              {account.page_content}
-            </p>
+            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed bg-[#1a1a3e]/40 p-6 rounded-lg border border-[#FF7828]/20">
+              <div dangerouslySetInnerHTML={{ __html: account.page_content }} />
+            </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">

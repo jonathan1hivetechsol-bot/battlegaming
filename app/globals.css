@@ -97,3 +97,55 @@ body {
 .slide-in-from-top {
   animation: slide-in-from-top 0.3s ease-out;
 }
+
+/* Prose styling for product content */
+.prose-invert {
+  color: rgb(226, 232, 240);
+}
+
+.prose-invert h2 {
+  color: rgb(255, 255, 255);
+  font-size: 1.875rem;
+  font-weight: 900;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.prose-invert h3 {
+  color: rgb(255, 152, 40);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.prose-invert p {
+  color: rgb(203, 213, 225);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.prose-invert ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.prose-invert ul li {
+  color: rgb(203, 213, 225);
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.prose-invert ul li:before {
+  content: "✓ ";
+  color: rgb(255, 152, 40);
+  font-weight: bold;
+  margin-left: -1.5rem;
+  margin-right: 0.5rem;
+}
