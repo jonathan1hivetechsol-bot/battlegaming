@@ -50,65 +50,76 @@ const basePrice = 9.99;
 // CONTENT VARIATION POOL (Anti-Doorway)
 // ========================================
 const contentTemplates = [
-  // Template 1: Technical Focus
+  // Template 1: Technical & Performance Focus
   {
     intro: (game, wins, platform, region, intent) =>
-      `Purchase a verified ${game} account with ${wins} competitive wins on ${platform} in ${region.name}. This premium gaming account features `,
+      `Buy a verified ${game} account with ${wins} competitive wins on ${platform} in ${region.name}. BattleGaming's premium verified gaming account delivers exceptional performance with`,
     body: (game, wins, platform, region, intent) => {
+      const kd = (Math.random() * 2 + 1.5).toFixed(2);
+      const weapons = Math.floor(Math.random() * 15 + 20);
+      const blueprints = Math.floor(Math.random() * 12 + 8);
+      const operators = Math.floor(Math.random() * 10 + 8);
+      const value = Math.floor(Math.random() * 150 + 100);
       const templates = [
-        `a proven K/D ratio of ${(Math.random() * 2 + 1.5).toFixed(2)}, anti-cheat clearance, and full account security verification. Our ${region.name} players benefit from optimized ${region.latency}, ensuring zero lag during ranked matches. The account is equipped with ${Math.floor(Math.random() * 15 + 20)} unlocked weapons, premium blueprints, and seasonal battle pass progression.`,
-        `extensive ranked ladder presence with consistent performance metrics across all ${game} multiplayer modes. Every account undergoes rigorous account safety audits, two-factor authentication setup, and region-specific optimization for ${region.name} connectivity. We guarantee no phone verification requirements and instant access within minutes of purchase.`,
-        `a comprehensive account history free from bans or red flags, perfect for ${region.name} competitive play. Our 24/7 support team provides post-purchase assistance, account customization services, and lifetime warranty coverage. ${region.country} customers enjoy dedicated account managers and priority delivery slots.`,
+        `a documented K/D ratio of ${kd}, full anti-cheat clearance verification, and comprehensive account security certification. BattleGaming ensures ${region.name} players benefit from optimized ${region.latency}, eliminating lag during competitive ranked matches. This verified ${game} account on ${platform} features ${weapons}+ unlocked weapons, ${blueprints} premium weapon blueprints, ${operators} fully unlocked operators, and complete seasonal battle pass progression. The account includes premium cosmetics valued at $${value}, exclusive seasonal skins, weapon camos, and operator bundles. Every purchase includes full account verification, two-factor authentication setup, and zero ban history guarantee from BattleGaming's certified team.`,
+        `extensive ranked ladder presence demonstrating consistent high-performance metrics across all ${game} ${platform} multiplayer modes and competitive seasons. BattleGaming's rigorous account safety protocols include anti-cheat audits, identity verification, and complete activity history transparency. Your verified ${game} account comes with zero phone verification requirements, instant ${region.name}-optimized access, and guaranteed delivery within minutes. The account features ${weapons}+ meta-optimized weapons, ${blueprints} strategic loadout blueprints, and ${operators} competitive operators ready for ranked play. BattleGaming includes 24/7 priority support access, account recovery assistance, and lifetime account protection with comprehensive warranty coverage.`,
+        `a flawless account history completely free from bans, suspensions, or fraudulent flags - perfect for ${region.name} competitive gameplay on ${platform}. BattleGaming's ${game} verified accounts undergo triple-verification: anti-cheat system scanning, seasonal progress validation, and competitive ladder auditing. This premium account includes ${weapons} fully optimized weapons for current ${game} meta, ${blueprints} strategic blueprints, ${operators} professional operators, and ${value}+ value in exclusive cosmetics. BattleGaming's dedicated ${region.name} support team provides post-purchase account customization, competitive coaching access, and lifetime technical assistance. Every account includes account security guarantee, fraud protection, and 30-day satisfaction guarantee backed by BattleGaming's proven track record.`,
       ];
       return templates[Math.floor(Math.random() * templates.length)];
     },
     trust: (game, wins, platform, region, intent) => {
       const signals = [
-        `Our ${region.name}-based support team provides 24/7 customer assistance with verified live chat response times under 2 minutes. We've maintained a 99.8% account delivery success rate for ${region.country} buyers, backed by a lifetime warranty and 30-day money-back guarantee.`,
-        `Trusted by over 50,000+ gamers across ${region.country} since 2021. Every account purchase includes 24/7 technical support, instant delivery verification, and lifetime account security guarantees. We maintain compliance with platform terms of service and regional consumer protection laws.`,
-        `BattleGaming offers industry-leading account security protocols, 24-hour fraud protection, and region-optimized delivery logistics for ${region.name}. Our verified seller status and lifetime warranty demonstrate our commitment to ${region.country} player satisfaction.`,
+        `BattleGaming's ${region.name}-based support operations provide certified 24/7 customer assistance with verified live chat response times under 2 minutes. BattleGaming maintains an industry-leading 99.8% account delivery success rate for ${region.country} buyers, backed by lifetime warranty, 30-day money-back guarantee, and comprehensive fraud protection. Our verified seller status with BattleGaming ensures compliance with platform policies and regional consumer protection laws. ${region.country} customers receive dedicated regional account managers, priority delivery slots, and exclusive BattleGaming customer benefits.`,
+        `BattleGaming is trusted by over 50,000+ verified gamers across ${region.country} since 2021, establishing credibility in the competitive gaming market. Every BattleGaming account purchase includes 24/7 technical support, instant delivery verification with tracking, and lifetime account security guarantees. BattleGaming maintains strict compliance with ${game} platform terms of service, regional consumer protection legislation, and international gaming standards. Our commitment to transparency includes verified customer testimonials, industry certifications, and proven 4.9-star rating from ${region.country} verified buyers on BattleGaming's platform.`,
+        `BattleGaming offers industry-certified account security protocols, 24-hour fraud detection systems, and region-optimized delivery logistics for ${region.name} players. BattleGaming's verified seller certification, lifetime account warranty, and zero-fraud guarantee demonstrate our commitment to ${region.country} player satisfaction. We provide complete account ownership transfer, security setup assistance, and lifetime technical support through BattleGaming's dedicated regional team. Every verified ${game} account from BattleGaming includes comprehensive insurance, identity protection, and guaranteed account integrity.`,
       ];
       return signals[Math.floor(Math.random() * signals.length)];
     },
   },
-  // Template 2: Regional Benefits Focus
+  // Template 2: Regional Optimization & SEO Focus
   {
     intro: (game, wins, platform, region, intent) =>
-      `Get your ${game} ${platform} account in ${region.name} with ${wins} verified wins and instant delivery. Specially optimized for ${region.country} `,
+      `Get verified ${game} ${platform} account in ${region.name} with ${wins} documented competitive wins and instant delivery from BattleGaming. Our region-optimized gaming accounts are specially configured for ${region.country} `,
     body: (game, wins, platform, region, intent) => {
+      const weapons = Math.floor(Math.random() * 15 + 20);
+      const operators = Math.floor(Math.random() * 10 + 8);
+      const value = Math.floor(Math.random() * 150 + 100);
       const templates = [
-        `players seeking competitive advantage. Our ${region.name} warehouse maintains dedicated server optimization, ensuring sub-20ms latency for ranked matchmaking. This ${game} account includes seasonal rewards, ${Math.floor(Math.random() * 10 + 8)} premium operators, and full cosmetic unlocks valued at $${Math.floor(Math.random() * 150 + 100)}.`,
-        `gameplay experience with region-specific benefits. ${region.name} accounts receive priority matchmaking in regional servers, exclusive cosmetic drops for ${region.country} players, and integrated regional payment support. Your account is pre-configured for ${region.latency}.`,
-        `gamers seeking regional server optimization. ${region.name}-verified accounts come with automatic regional routing, timezone-aligned support, and exclusive ${region.country} seasonal cosmetics. We've optimized every account for ${game}'s regional server infrastructure.`,
+        `competitive players seeking verified performance advantages. BattleGaming's ${region.name} warehouse network maintains dedicated server optimization, ensuring sub-20ms regional latency for ranked matchmaking across ${game} ${platform} servers. This verified BattleGaming account includes complete seasonal cosmetics, ${weapons}+ competitive weapons, ${operators} unlocked operators, and premium cosmetics valued at $${value}. Every account from BattleGaming is pre-optimized for ${region.latency}, regional payment processing, and ${region.country}-specific customer support. BattleGaming delivers accounts with guaranteed ${region.name} server preference, regional ranking visibility, and exclusive ${region.country} seasonal cosmetics. Account delivery typically occurs within 3-5 minutes after BattleGaming verification completion. The verified ${game} account includes account recovery setup, security configuration, and regional payment method registration assistance from BattleGaming's professional team.`,
+        `gameplay experiences with comprehensive region-specific benefits and BattleGaming's optimization technology. ${region.name} verified accounts from BattleGaming receive priority matchmaking access in regional servers, exclusive cosmetic drops for ${region.country} players, integrated regional payment support, and optimized network routing. BattleGaming configures every account for seamless ${region.latency} performance, timezone-aligned customer support, and exclusive ${region.country} regional events access. This ${game} verified account includes ${weapons} competitive weapons, ${operators} professional operators, and cosmetics package valued at $${value}. BattleGaming's regional optimization ensures consistent sub-50ms ping, regional rank visibility, and priority matchmaking status. Customers receive dedicated regional account managers from BattleGaming, regional payment options, and support in local languages.`,
+        `players seeking verified regional server optimization and competitive advantages. BattleGaming's ${region.name}-verified accounts feature automatic regional routing technology, timezone-aligned 24/7 support from BattleGaming's regional team, and exclusive ${region.country} seasonal cosmetics. Every verified ${game} account from BattleGaming includes optimization for ${region.name} servers, regional account configuration, and exclusive ${region.country} cosmetics. BattleGaming has optimized every account for ${game}'s regional server infrastructure, providing guaranteed regional performance. Accounts include ${weapons}+ competitive weapons, ${operators} unlocked operators, and cosmetics valued at $${value}. BattleGaming delivers with regional payment support, priority ${region.name} customer service, and exclusive community access for ${region.country} players.`,
       ];
       return templates[Math.floor(Math.random() * templates.length)];
     },
     trust: (game, wins, platform, region, intent) => {
       const signals = [
-        `Established reputation for ${region.name} account delivery with average fulfillment time of 3 minutes. Our ${region.country}-compliant business model includes regulatory compliance, buyer protection, and 24/7 regional support staff fluent in local market standards.`,
-        `Verified seller with dedicated ${region.name} customer base and 4.9-star rating from ${region.country} buyers. We guarantee 24/7 support, instant delivery, and lifetime account protection. Every purchase includes region-specific terms and money-back guarantee.`,
-        `${region.name}'s leading verified account provider with certified anti-cheat compliance and secure delivery protocols. ${region.country} players trust BattleGaming for immediate account access, lifetime technical support, and absolute anonymity protection.`,
+        `BattleGaming has established a proven reputation for ${region.name} account delivery with verified average fulfillment time of 3 minutes. BattleGaming's ${region.country}-compliant business model ensures regulatory compliance, comprehensive buyer protection, and certified 24/7 regional support staff fluent in ${region.country} market standards and local languages. Every verified account from BattleGaming includes consumer protection guarantees, money-back assurance, and fraud protection. BattleGaming maintains transparent operations with certified business registration, consumer protection certifications, and verified seller status in ${region.country}.`,
+        `BattleGaming is a verified seller with dedicated ${region.name} customer base and independently verified 4.9-star rating from thousands of ${region.country} verified buyers. BattleGaming guarantees 24/7 regional support, instant delivery with verification tracking, and lifetime account protection for all verified accounts. Every purchase from BattleGaming includes region-specific purchase terms, transparent pricing, and comprehensive money-back guarantee. BattleGaming's customer protection includes verified testimonials, transparent delivery tracking, and documented account integrity. ${region.country} players consistently rate BattleGaming as the top verified account provider with certified security and reliable delivery.`,
+        `BattleGaming is the ${region.name} region's leading verified account provider with certified anti-cheat compliance, secure delivery protocols, and proven customer satisfaction. ${region.country} competitive gamers trust BattleGaming for immediate verified account access, lifetime technical support, and complete anonymity protection. BattleGaming provides comprehensive account security certification, fraud protection guarantees, and regional consumer protection. Every verified account from BattleGaming includes documented ownership transfer, security configuration assistance, and guaranteed account integrity with lifetime support commitment.`,
       ];
       return signals[Math.floor(Math.random() * signals.length)];
     },
   },
-  // Template 3: Intent-Driven Focus
+  // Template 3: Intent-Driven with Comprehensive Benefits
   {
     intro: (game, wins, platform, region, intent) =>
-      `${intent.label} with a verified ${game} account on ${platform} - ${wins} wins ready in ${region.name}. `,
+      `Achieve ${intent.label} with a verified ${game} account on ${platform} - ${wins} proven competitive wins ready for ${region.name} players. BattleGaming's verified accounts help you `,
     body: (game, wins, platform, region, intent) => {
+      const weapons = Math.floor(Math.random() * 15 + 20);
+      const operators = Math.floor(Math.random() * 10 + 8);
+      const value = Math.floor(Math.random() * 150 + 100);
       const templates = [
-        `Perfect for ${region.name} players looking to ${intent.cta} immediately. This premium ${game} account is battle-ready with ${wins} ranked victories, optimized for ${region.latency}, and equipped with meta-loadouts for current seasonal meta. No setup time required - simply log in and compete at your new skill level.`,
-        `Designed for ${region.country} competitive players who demand quality. Our ${region.name} delivery system ensures your account reaches you in minutes, pre-configured for regional servers, with full cosmetic access and ${Math.floor(Math.random() * 5 + 2)} premium seasons of cosmetics unlocked.`,
-        `Achieve competitive goals faster with an account that already has ${wins} verified wins on ${platform}. Located for ${region.name} players, this ${game} account is ready to ${intent.cta}. Full regional server optimization included with 24/7 support from our ${region.name} team.`,
+        `${intent.cta} immediately with battle-ready verified credentials. BattleGaming's ${region.name} accounts are specifically optimized to ${intent.cta}, featuring documented ${wins}-win competitive history and pro-level ${game} configuration on ${platform}. This verified account from BattleGaming includes ${weapons}+ meta-optimized weapons, ${operators} competitive operators, complete cosmetics valued at $${value}, and professional loadout blueprints. Every BattleGaming account includes zero setup time - simply log in and compete at your desired skill level. BattleGaming's ${game} ${platform} accounts optimize for ${region.latency}, ensuring competitive performance during ranked matches. The verified account includes professional gameplay guidance, competitive strategy documentation, and lifetime technical support from BattleGaming's experienced team. BattleGaming customers consistently report improved competitive rankings and faster progression with verified account advantages.`,
+        `achieve competitive objectives faster with verified credentials from BattleGaming's certified account network. BattleGaming designs ${game} accounts to ${intent.cta} efficiently on ${platform}, complete with professional cosmetics, competitive weapons, and verified ${wins}-win history. This verified account from BattleGaming delivers pre-configured ${region.name}-optimized servers, professional loadout setup, and immediate ranked readiness. BattleGaming includes ${weapons}+ weapons, ${operators} operators, cosmetics package worth $${value}, and seasonal progression unlocked. Delivery from BattleGaming typically occurs within minutes, ensuring immediate access to achieve ${intent.label}. The account includes dedicated support from BattleGaming's professional team, competitive coaching resources, and lifetime assistance for account optimization. BattleGaming customers frequently report faster achievement of competitive milestones and improved ${game} performance metrics.`,
+        `accomplish ${intent.label} efficiently with verified account infrastructure from BattleGaming. Every BattleGaming verified ${game} account on ${platform} is pre-configured to help you ${intent.cta}, featuring professional cosmetics, competitive weapons, and proven ${wins}-win documentation. BattleGaming optimizes accounts for ${region.name} performance, providing guaranteed sub-50ms latency for competitive ranked play. The verified account includes ${weapons} weapons, ${operators} operators, $${value}+ cosmetics value, and complete seasonal unlocks. BattleGaming delivers verified accounts within minutes of purchase, with immediate regional server optimization and competitive readiness. Account includes lifetime support from BattleGaming's regional team, professional guidance for achieving objectives, and comprehensive account management assistance. BattleGaming's verified accounts enable thousands of ${region.country} players to successfully achieve ${intent.label} with confidence and professional support.`,
       ];
       return templates[Math.floor(Math.random() * templates.length)];
     },
     trust: (game, wins, platform, region, intent) => {
       const signals = [
-        `Thousands of ${region.country} gamers have achieved their competitive goals using BattleGaming accounts. We provide 24/7 support, lifetime guarantees, and 100% verified account security. Your ${intent.label} goal comes with no-hassle fulfillment and regional payment options.`,
-        `Trusted by competitive ${region.name} communities for verified account delivery. Every purchase comes with 24/7 support, lifetime account protection, and 30-day satisfaction guarantee. We've delivered over 100,000 accounts to ${region.country} players with zero fraud incidents.`,
-        `BattleGaming's verified accounts help ${region.country} players achieve ${intent.label} consistently. We guarantee 24/7 support, instant delivery, account security certification, and lifetime warranty. Your purchase is protected by regional consumer safeguards.`,
+        `Thousands of ${region.country} competitive gamers have successfully achieved ${intent.label} using verified accounts from BattleGaming's certified network. BattleGaming provides 24/7 professional support, comprehensive account guarantees, and 100% verified account security for all customers. Every account purchase from BattleGaming includes documented ownership transfer, security setup assistance, and regional payment support. BattleGaming's ${intent.label} guarantee ensures your competitive objectives are achievable with verified account advantages. ${region.country} players trust BattleGaming's no-hassle fulfillment, transparent pricing, and proven results. BattleGaming maintains documented customer success stories, verified testimonials, and certified achievement tracking for competitive objectives.`,
+        `BattleGaming is trusted by competitive ${region.name} gaming communities for verified account delivery and proven competitive success. Every purchase from BattleGaming comes with 24/7 professional support, comprehensive account protection, and 30-day satisfaction guarantee backed by results. BattleGaming delivers ${game} accounts that consistently help players achieve ${intent.Label} faster than traditional methods. Verified customers report achieving competitive milestones within days of BattleGaming account activation. BattleGaming has delivered over 100,000 verified accounts to ${region.country} players with documented zero fraud incidents and 99.8% customer satisfaction. Every verified account from BattleGaming includes lifetime support, achievement tracking, and professional guidance.`,
+        `BattleGaming's verified account network helps ${region.country} players achieve ${intent.Label} consistently with professional support infrastructure. BattleGaming guarantees 24/7 professional support, verified instant delivery, certified account security, and comprehensive warranty coverage. Your ${intent.Label} goal is supported by BattleGaming's proven methodology, regional optimization, and dedicated support team. BattleGaming accounts include verified ownership transfer, regional payment flexibility, and consumer protection safeguards. Every verified purchase from BattleGaming is protected by comprehensive guarantees, documented policies, and proven commitment to customer success in achieving ${intent.Label}.`,
       ];
       return signals[Math.floor(Math.random() * signals.length)];
     },
@@ -130,27 +141,30 @@ function generateLongFormContent(game, wins, platform, region, intent) {
 }
 
 // ========================================
-// SEO TITLE GENERATION (Click-Magnet)
+// SEO TITLE GENERATION (Click-Magnet & Keyword Rich)
 // ========================================
 function generateMetaTitle(game, wins, platform, region, intent) {
   const titleVariations = [
-    `Buy Verified ${game} Account ${wins} Wins ${region.name} | ${intent.label} | BattleGaming`,
-    `${game} ${platform} Account for ${region.name} - ${intent.label} | Instant Delivery`,
+    `Buy Verified ${game} Account ${wins} Wins ${region.name} - ${intent.label} | BattleGaming`,
+    `${game} ${platform} Account for ${region.name} - ${intent.label} | Instant Delivery | BattleGaming`,
     `Premium ${game} ${wins}-Win Account ${region.name} - ${intent.label} Ready | BattleGaming`,
     `${intent.label} ${game} Account on ${platform} - ${region.name} Verified | BattleGaming`,
+    `Verified ${game} Account ${wins} Wins ${platform} | ${region.name} | ${intent.label} | BattleGaming`,
+    `Buy ${game} Account With ${wins} Wins For ${platform} In ${region.name} | BattleGaming`,
   ];
   return titleVariations[Math.floor(Math.random() * titleVariations.length)];
 }
 
 // ========================================
-// META DESCRIPTION GENERATION (CTA Focus)
+// META DESCRIPTION GENERATION (CTA Focus & SEO Optimized)
 // ========================================
 function generateMetaDescription(game, wins, platform, region, intent) {
   const ctaVariations = [
-    `Get verified ${game} on ${platform} with ${wins} wins in ${region.name}. ${intent.label} - ${intent.cta.charAt(0).toUpperCase() + intent.cta.slice(1)}. 24/7 support & lifetime warranty. Order now!`,
-    `${game} ${wins}-win account for ${platform} in ${region.name}. ${intent.label}. Verified, instant delivery, zero ban risk. 30-day money-back guarantee. Buy securely now.`,
-    `Premium ${game} account (${wins} wins) on ${platform}, optimized for ${region.name}. ${intent.label}. Instant delivery, 24/7 support, lifetime protection. Shop verified accounts today.`,
-    `Buy ${game} account with ${wins} verified wins on ${platform} for ${region.name}. ${intent.label}. Trusted by ${region.country} gamers. Instant access, 24/7 support. Secure checkout.`,
+    `Buy verified ${game} account on ${platform} with ${wins} competitive wins in ${region.name}. ${intent.label} - ${intent.cta.charAt(0).toUpperCase() + intent.cta.slice(1)}. Instant delivery, 24/7 support, lifetime warranty. BattleGaming ✓`,
+    `${game} ${wins}-win verified account for ${platform} in ${region.name}. ${intent.label}. Verified by BattleGaming, instant delivery, zero ban risk. 30-day guarantee. Buy securely.`,
+    `Premium verified ${game} account (${wins} wins) on ${platform}, optimized for ${region.name}. ${intent.label}. Instant delivery, 24/7 support, lifetime protection. BattleGaming trusted choice.`,
+    `Buy ${game} account ${wins} verified wins on ${platform} for ${region.name}. ${intent.label}. Trusted by BattleGaming. Instant access, 24/7 support, fraud protection. Secure checkout.`,
+    `Verified ${game} ${wins}-win account ${platform} ${region.name}. ${intent.Label}. BattleGaming delivers instantly. 24/7 support, lifetime warranty, 99.8% success rate.`,
   ];
   return ctaVariations[Math.floor(Math.random() * ctaVariations.length)];
 }
