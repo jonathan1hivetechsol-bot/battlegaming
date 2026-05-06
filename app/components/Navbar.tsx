@@ -109,10 +109,13 @@ export default function Navbar() {
             </a>
 
             {/* ========== PAGES DROPDOWN (DESKTOP) ========== */}
-            <div className="relative" ref={dropdownRef}>
+            <div 
+              className="relative"
+              ref={dropdownRef}
+              onMouseEnter={() => setIsOpen(true)}
+              onMouseLeave={() => setIsOpen(false)}
+            >
               <button
-                onMouseEnter={() => setIsOpen(true)}
-                onMouseLeave={() => setIsOpen(false)}
                 onClick={() => setIsOpen(!isOpen)}
                 className="relative text-gray-300 hover:text-[#FF7828] font-semibold tracking-wide text-sm uppercase transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)] flex items-center gap-2 group"
               >
@@ -134,20 +137,23 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              {/* Desktop Mega Menu - Centered */}
+              {/* Desktop Mega Menu - Centered with Invisible Bridge */}
               {isOpen && (
-                <div
-                  onMouseEnter={() => setIsOpen(true)}
-                  onMouseLeave={() => setIsOpen(false)}
-                  className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-screen max-w-4xl
-                    bg-[#0d071a]/95 backdrop-blur-xl border border-[#FF7828]/30 rounded-2xl 
-                    shadow-2xl shadow-[#FF7828]/30 z-50 overflow-hidden
-                    animate-in fade-in zoom-in-95 duration-200"
-                >
-                  {/* Gradient top border */}
-                  <div className="h-1 bg-gradient-to-r from-[#FF7828] via-[#FF7828]/50 to-transparent"></div>
+                <>
+                  {/* Invisible bridge to prevent dropdown from closing on hover */}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-full h-3 -translate-y-3"></div>
+                  
+                  <div
+                    className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-screen max-w-4xl
+                      z-50 overflow-hidden
+                      animate-in fade-in zoom-in-95 duration-200"
+                  >
+                    <div className="bg-[#0d071a]/95 backdrop-blur-xl border border-[#FF7828]/30 rounded-2xl 
+                      shadow-2xl shadow-[#FF7828]/30 overflow-hidden">
+                      {/* Gradient top border */}
+                      <div className="h-1 bg-gradient-to-r from-[#FF7828] via-[#FF7828]/50 to-transparent"></div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
                     {/* Featured Pages Section */}
                     <div className="md:col-span-1">
                       <h3 className="text-[#FF7828] font-bold text-sm uppercase tracking-widest mb-5 drop-shadow-[0_0_10px_rgba(255,120,40,0.5)]">
@@ -216,7 +222,9 @@ export default function Navbar() {
                       <span className="text-[#FF7828]">⚡</span> Instant delivery guaranteed
                     </div>
                   </div>
-                </div>
+                    </div>
+                  </div>
+                </>
               )}
             </div>
 
