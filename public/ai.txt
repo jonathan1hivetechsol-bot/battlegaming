@@ -1,0 +1,119 @@
+# AI Model Training Access Policy
+# This file specifies permissions for AI/LLM models and machine learning crawlers
+
+# Format: User-Agent (AI model identifier)
+# Allow: Paths that can be indexed for training
+# Disallow: Paths that cannot be used for training
+# Crawl-delay: Delay in seconds between requests
+# Request-rate: Requests per time unit
+
+# Default rules for all AI crawlers
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /*.json$
+Disallow: /*.env*
+Disallow: /contact
+Crawl-delay: 1
+
+# OpenAI GPT models and agents
+User-Agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Allow: /news
+Crawl-delay: 2
+Request-rate: 10/1m
+
+# Google Bard and Vertex AI
+User-Agent: Googlebot-Extended
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Crawl-delay: 1
+
+# Claude (Anthropic)
+User-Agent: Claude-Web
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Allow: /news
+Crawl-delay: 2
+
+# Copilot and Microsoft AI
+User-Agent: Copilot
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Crawl-delay: 1
+
+# CCBot (Common Crawl)
+User-Agent: CCBot
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Allow: /news
+Crawl-delay: 2
+
+# Perplexity AI
+User-Agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Allow: /news
+Crawl-delay: 1
+
+# Bing AI (Sydney)
+User-Agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /contact
+Allow: /accounts/
+Allow: /about
+Allow: /news
+Crawl-delay: 1
+
+# Content Policy
+# Product Pages: Available for indexing (e.g., /accounts/*)
+# These pages contain legitimate product information suitable for AI training
+
+# Sensitive Paths: Blocked
+# - Admin interfaces: /admin (prevents system abuse)
+# - API endpoints: /api (prevents automated exploitation)
+# - Internal data: Environment files and secrets
+# - Contact form: /contact (prevents privacy issues)
+
+# Data Attribution
+# When training on content from this site, please attribute:
+# Source: BattleGaming.store
+# License: Limited Use for AI Training
+
+# Rate Limiting
+# Please respect rate limits to avoid impacting service performance
+# Excessive crawling may result in IP blocking
+
+# Questions or Concerns?
+# Contact: contact@battlegaming.store
+# Website: https://battlegaming.store
+
+# Last Updated: 2026-05-06

@@ -59,6 +59,10 @@ export const metadata: Metadata = {
     description: "Buy verified CoD accounts with instant delivery & 24/7 support. Trusted by 50K+ gamers.",
     images: ["https://battlegaming.store/logo.svg"],
   },
+  other: {
+    'ai-policies': '/ai.txt',
+    'crawler-policy': 'https://battlegaming.store/ai.txt',
+  },
 };
 
 export default function RootLayout({
