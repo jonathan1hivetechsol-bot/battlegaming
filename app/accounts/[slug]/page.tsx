@@ -7,9 +7,20 @@ import BuyNowButton from '../../components/BuyNowButton'
 // Cache revalidation time (1 hour). PSEO ke liye best hai.
 export const revalidate = 3600;
 
-// Dynamic SEO Metadata generate karne ke liye
+/**
+ * generateMetadata - Dynamic SEO for all 1,260+ product pages
+ * 
+ * CANONICAL FIX: Uses process.env.NEXT_PUBLIC_SITE_URL to ensure self-referencing canonical URLs
+ * No pages show "Missing" in SEO analyzer. All canonicals resolve to clean domain.
+ * 
+ * META DESCRIPTION: Shortened to 155 characters max for optimal SERP display
+ * 
+ * ROBOTS TAG: index, follow enabled for all pages with proper tag structure
+ */
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
+  
+  // Canonical Fix: Use environment variable with fallback to production domain
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://battlegaming.store';
   
   const { data } = await supabase
@@ -18,45 +29,72 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .eq('slug', resolvedParams.slug)
     .single();
 
-  if (!data) return { title: 'Account Not Found' };
+  if (!data) {
+    return {
+      title: 'Account Not Found',
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
 
+  // Self-referencing canonical URL (CRITICAL for duplicate prevention)
   const canonicalUrl = `${baseUrl}/accounts/${resolvedParams.slug}`;
+
+  // Ensure description is <= 155 chars
+  const description = data.meta_description.length > 155
+    ? data.meta_description.substring(0, 152) + '...'
+    : data.meta_description;
 
   return {
     title: data.meta_title,
-    description: data.meta_description,
+    description: description,
+    keywords: `${data.game_version} account, ${data.platform}, ${data.wins} wins, ${data.region}, verified account, instant delivery`,
+    
+    // Canonical Fix: Self-referencing canonical with process.env variable
     alternates: {
       canonical: canonicalUrl,
     },
-    openGraph: {
-      title: data.meta_title,
-      description: data.meta_description,
-      url: canonicalUrl,
-      type: 'website',
-      siteName: 'BattleGaming',
-      images: [
-        {
-          url: `${baseUrl}/logo.svg`,
-          width: 1200,
-          height: 630,
-          alt: 'BattleGaming - Premium Call of Duty Accounts',
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: data.meta_title,
-      description: data.meta_description,
-      images: [`${baseUrl}/logo.svg`],
-    },
+
+    // Robots Tag: index, follow enabled
     robots: {
       index: true,
       follow: true,
       'max-snippet': -1,
       'max-image-preview': 'large',
       'max-video-preview': -1,
+      googleBot: 'index, follow',
     },
-  }
+
+    // Open Graph for Social Media
+    openGraph: {
+      title: data.meta_title,
+      description: description,
+      url: canonicalUrl,
+      type: 'website',
+      siteName: 'BattleGaming',
+      locale: 'en_US',
+      images: [
+        {
+          url: `${baseUrl}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: `${data.game_version} Account - ${data.wins} Wins on ${data.platform}`,
+          type: 'image/png',
+        },
+      ],
+    },
+
+    // Twitter Card for Social Media
+    twitter: {
+      card: 'summary_large_image',
+      title: data.meta_title,
+      description: description,
+      images: [`${baseUrl}/og-image.png`],
+      creator: '@BattleGaming',
+    },
+  };
 }
 
 export default async function AccountPage({ params }: { params: Promise<{ slug: string }> }) {

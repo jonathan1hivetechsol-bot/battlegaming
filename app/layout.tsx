@@ -19,18 +19,43 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "BattleGaming - Premium Call of Duty Accounts | battlegaming.store",
-  description: "Buy premium verified Call of Duty accounts with exclusive stats, instant delivery, and lifetime guarantees. Available in USA, UK, California, Texas, New York, London, and Manchester.",
+  description: "Buy verified Call of Duty accounts with exclusive stats and instant delivery. Trusted globally in USA, UK, & Europe. Lifetime guarantees. Shop BattleGaming today!",
+  keywords: "Call of Duty accounts, CoD accounts, verified accounts, instant delivery, USA, UK, Europe",
   icons: {
     icon: '/favicon.svg',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large',
+    'max-video-preview': -1,
+    googleBot: 'index, follow',
   },
   verification: {
     google: 'IQwmnCTqC92TeOWdUkT3UkTb-2g5p-XagXgpB9cHDCM',
   },
   openGraph: {
     title: "BattleGaming - Premium Call of Duty Accounts",
-    description: "Elite verified CoD accounts with 99.8% delivery success rate.",
+    description: "Elite verified CoD accounts with 99.8% delivery success rate. Instant delivery & lifetime support.",
     url: "https://battlegaming.store",
+    type: 'website',
     siteName: "BattleGaming",
+    locale: 'en_US',
+    images: [
+      {
+        url: "https://battlegaming.store/logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "BattleGaming - Premium Call of Duty Accounts",
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "BattleGaming - Premium Call of Duty Accounts",
+    description: "Buy verified CoD accounts with instant delivery & 24/7 support. Trusted by 50K+ gamers.",
+    images: ["https://battlegaming.store/logo.svg"],
   },
 };
 
