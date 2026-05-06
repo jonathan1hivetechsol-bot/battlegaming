@@ -3,18 +3,27 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuth } from '@/app/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
+  const router = useRouter();
+  const { isAuthenticated, userProfile, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileRegion, setActiveMobileRegion] = useState<string | null>(null);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
       }
     };
 
@@ -247,10 +256,88 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Sign In Button */}
-            <button className="hidden md:block relative px-8 py-2.5 bg-[#FF7828] text-black font-bold text-sm uppercase rounded-lg hover:bg-[#E86B1F] hover:shadow-[0_0_25px_rgba(255,120,40,0.8)] transition-all duration-300 hover:scale-105 shadow-lg shadow-[#FF7828]/50 pointer-events-auto">
-              Sign In
-            </button>
+            {/* ========== AUTH UI ========== */}
+            {!isAuthenticated ? (
+              // Not logged in - Show Sign In/Sign Up buttons
+              <div className="hidden md:flex items-center gap-3">
+                <Link
+                  href="/signin"
+                  className="px-6 py-2.5 text-[#FF7828] border border-[#FF7828] font-bold text-sm uppercase rounded-lg hover:bg-[#FF7828]/10 transition-all duration-300"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-6 py-2.5 bg-[#FF7828] text-black font-bold text-sm uppercase rounded-lg hover:bg-[#E86B1F] hover:shadow-[0_0_25px_rgba(255,120,40,0.8)] transition-all duration-300 hover:scale-105 shadow-lg shadow-[#FF7828]/50"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            ) : (
+              // Logged in - Show profile dropdown
+              <div className="relative" ref={profileRef}>
+                <button
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-[#1a1a3e] border border-[#FF7828]/30 rounded-lg hover:bg-[#2d1b4e] transition-all duration-300"
+                >
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#FF7828] to-[#45f882] rounded-full flex items-center justify-center">
+                    <span className="text-xs font-bold text-white">
+                      {userProfile?.display_name?.charAt(0).toUpperCase() || 'B'}
+                    </span>
+                  </div>
+                  <span className="text-white font-semibold text-sm hidden lg:inline">
+                    {userProfile?.display_name || 'Account'}
+                  </span>
+                  <svg
+                    className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${
+                      isProfileOpen ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    />
+                  </svg>
+                </button>
+
+                {/* Profile Dropdown */}
+                {isProfileOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-[#1a1a3e] border border-[#FF7828]/30 rounded-lg shadow-xl shadow-[#FF7828]/20 overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-200">
+                    {/* Profile Header */}
+                    <div className="bg-gradient-to-r from-[#FF7828]/20 to-[#45f882]/20 px-4 py-3 border-b border-[#FF7828]/20">
+                      <p className="text-white font-semibold text-sm">
+                        {userProfile?.display_name || 'BattleGaming User'}
+                      </p>
+                      <p className="text-gray-400 text-xs mt-1">{userProfile?.user_id}</p>
+                    </div>
+
+                    {/* Menu Items */}
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsProfileOpen(false)}
+                      className="block px-4 py-3 text-gray-300 hover:text-[#FF7828] hover:bg-[#2d1b4e]/60 transition-all duration-200 text-sm font-semibold border-b border-[#FF7828]/10"
+                    >
+                      My Profile
+                    </Link>
+                    <button
+                      onClick={async () => {
+                        await signOut();
+                        setIsProfileOpen(false);
+                        router.push('/');
+                      }}
+                      className="w-full text-left px-4 py-3 text-red-400 hover:bg-red-500/10 transition-all duration-200 text-sm font-semibold"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* ========== MOBILE MENU BUTTON ========== */}
             <button
@@ -395,10 +482,45 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Sign In Button */}
-            <div className="pt-4 border-t border-[#FF7828]/20">
-              <button className="w-full px-6 py-3 bg-[#FF7828] text-black font-bold text-sm uppercase rounded-lg hover:bg-[#E86B1F] transition-all duration-300 shadow-lg shadow-[#FF7828]/50">
-                Sign In
-              </button>
+            <div className="pt-4 border-t border-[#FF7828]/20 space-y-3">
+              {!isAuthenticated ? (
+                <>
+                  <Link
+                    href="/signin"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full px-6 py-3 text-center text-[#FF7828] border border-[#FF7828] font-bold text-sm uppercase rounded-lg hover:bg-[#FF7828]/10 transition-all duration-300"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/signup"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full px-6 py-3 bg-[#FF7828] text-black font-bold text-sm uppercase rounded-lg hover:bg-[#E86B1F] transition-all duration-300 shadow-lg shadow-[#FF7828]/50"
+                  >
+                    Create Account
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/profile"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full px-6 py-3 bg-[#1a1a3e] border border-[#FF7828]/30 text-center text-white font-bold text-sm uppercase rounded-lg hover:bg-[#2d1b4e] transition-all duration-300"
+                  >
+                    My Profile
+                  </Link>
+                  <button
+                    onClick={async () => {
+                      await signOut();
+                      setIsMobileMenuOpen(false);
+                      router.push('/');
+                    }}
+                    className="w-full px-6 py-3 bg-red-500/10 text-red-400 font-bold text-sm uppercase rounded-lg hover:bg-red-500/20 transition-all duration-300"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

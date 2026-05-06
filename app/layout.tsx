@@ -5,6 +5,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { OrganizationSchema } from "./components/SchemaMarkup";
+import { AuthProvider } from "./context/AuthContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -70,23 +71,25 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0d071a] text-white" suppressHydrationWarning>
-        {/* Scroll to Top on Navigation */}
-        <ScrollToTop />
-        
-        {/* Custom Cursor Glow - Ultra High Z-Index for Universal Top Visibility */}
-        <CursorGlow />
-        
-        {/* Navbar - Optimized Component */}
-        <Navbar />
+        <AuthProvider>
+          {/* Scroll to Top on Navigation */}
+          <ScrollToTop />
+          
+          {/* Custom Cursor Glow - Ultra High Z-Index for Universal Top Visibility */}
+          <CursorGlow />
+          
+          {/* Navbar - Optimized Component */}
+          <Navbar />
 
-        {/* Main Content */}
-        <main className="flex-1">{children}</main>
+          {/* Main Content */}
+          <main className="flex-1">{children}</main>
 
-        {/* Footer */}
-        <Footer />
+          {/* Footer */}
+          <Footer />
 
-        {/* Organization Schema Markup */}
-        <OrganizationSchema />
+          {/* Organization Schema Markup */}
+          <OrganizationSchema />
+        </AuthProvider>
 
         {/* WhatsApp Floating Button */}
         <a
