@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  verification: {
+    google: 'IQwmnCTqC92TeOWdUkT3UkTb-2g5p-XagXgpB9cHDCM',
+  },
   openGraph: {
     title: "BattleGaming - Premium Call of Duty Accounts",
     description: "Elite verified CoD accounts with 99.8% delivery success rate.",

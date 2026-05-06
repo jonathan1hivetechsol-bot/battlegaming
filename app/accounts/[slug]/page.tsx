@@ -2,6 +2,7 @@ import { supabase } from '../../../lib/supabase'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { SchemaMarkup } from '../../components/SchemaMarkup'
+import BuyNowButton from '../../components/BuyNowButton'
 
 // Cache revalidation time (1 hour). PSEO ke liye best hai.
 export const revalidate = 3600;
@@ -96,77 +97,72 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
         }}
       />
 
-      <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-blue-500/30">
+      <div className="min-h-screen bg-[#0d071a] text-slate-50 font-sans selection:bg-[#FF7828]/30">
       <main className="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         
         {/* Breadcrumb */}
-        <nav className="text-sm text-slate-400 mb-8">
-          Home &gt; Accounts &gt; {account.game_version} &gt; <span className="text-blue-400">{account.platform}</span>
+        <nav className="text-sm text-gray-400 mb-8">
+          <a href="/" className="hover:text-[#FF7828] transition-colors">Home</a> &gt; <a href="/accounts/usa-all" className="hover:text-[#FF7828] transition-colors">Accounts</a> &gt; <span className="text-[#FF7828]">{account.game_version}</span> &gt; <span className="text-[#FF7828]">{account.platform}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
           {/* Left Column: Content */}
           <div className="lg:col-span-2 space-y-8">
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-[#FF7828] to-[#FF7828] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,120,40,0.3)]">
               {account.meta_title}
             </h1>
             
-            <p className="text-lg text-slate-300 leading-relaxed">
+            <p className="text-lg text-gray-300 leading-relaxed bg-[#1a1a3e]/40 p-6 rounded-lg border border-[#FF7828]/20">
               {account.page_content}
             </p>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-              <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">Game</p>
-                <p className="font-semibold">{account.game_version}</p>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Game</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.game_version}</p>
               </div>
-              <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">Platform</p>
-                <p className="font-semibold text-blue-400">{account.platform}</p>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Platform</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.platform}</p>
               </div>
-              <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">Guaranteed Wins</p>
-                <p className="font-semibold text-emerald-400">{account.wins}</p>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Wins</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.wins}</p>
               </div>
-              <div className="bg-slate-900/50 border border-slate-800 p-4 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">Delivery</p>
-                <p className="font-semibold text-purple-400">{account.delivery_time}</p>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Delivery</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.delivery_time}</p>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Checkout Card */}
+          {/* Right Column: WhatsApp Buy Now */}
           <div className="lg:col-span-1">
-            <div className="sticky top-8 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl shadow-black/50">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <p className="text-sm text-slate-400 mb-1">Price</p>
-                  <p className="text-4xl font-bold">${account.price.toFixed(2)}</p>
-                </div>
-                <div className={`px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider ${account.stock_status === 'available' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
-                  {account.stock_status}
-                </div>
+            <div className="sticky top-8">
+              {/* Price Header */}
+              <div className="bg-gradient-to-r from-[#FF7828]/20 to-transparent p-6 rounded-lg border border-[#FF7828]/40 mb-6">
+                <p className="text-sm text-gray-400 mb-2">Starting Price</p>
+                <p className="text-5xl font-black text-[#FF7828]">${account.price.toFixed(2)}</p>
+                <p className="text-xs text-gray-500 mt-2">Region: {account.region}</p>
               </div>
 
-              <button 
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 px-6 rounded-xl transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed mb-4"
-                disabled={account.stock_status !== 'available'}
-              >
-                {account.stock_status === 'available' ? 'Buy Now' : 'Out of Stock'}
-              </button>
+              {/* Buy Now Button */}
+              <BuyNowButton
+                gameVersion={account.game_version}
+                wins={account.wins}
+                region={account.region}
+                price={account.price}
+                platform={account.platform}
+                slug={resolvedParams.slug}
+              />
 
-              <div className="space-y-3 text-sm text-slate-400">
-                <p className="flex items-center gap-2">
-                  ✓ 100% Secure Transaction
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ Full Access Details Provided
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ Lifetime Support Guarantee
-                </p>
+              {/* Stock Status */}
+              <div className="mt-6 text-center">
+                <div className={`inline-block px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest ${account.stock_status === 'available' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-red-500/20 text-red-400 border border-red-500/40'}`}>
+                  {account.stock_status === 'available' ? '🟢 IN STOCK' : '🔴 OUT OF STOCK'}
+                </div>
               </div>
             </div>
           </div>
