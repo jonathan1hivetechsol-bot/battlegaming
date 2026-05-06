@@ -87,6 +87,24 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Editorial Transparency Section */}
+        <div className="py-8 border-y border-[#FF7828]/20 my-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div>
+              <h5 className="text-[#FF7828] font-bold mb-2">Transparency</h5>
+              <p className="text-gray-400">We maintain strict editorial standards and independent verification of all products.</p>
+            </div>
+            <div>
+              <h5 className="text-[#FF7828] font-bold mb-2">Trust Signals</h5>
+              <p className="text-gray-400">Licensed, verified, and compliant with industry standards and consumer protection laws.</p>
+            </div>
+            <div>
+              <h5 className="text-[#FF7828] font-bold mb-2">Legal Compliance</h5>
+              <p className="text-gray-400">All operations governed by Terms of Service, Privacy Policy, and Cookie Policy.</p>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-[#FF7828]/20">
           <p className="text-gray-400 text-xs">

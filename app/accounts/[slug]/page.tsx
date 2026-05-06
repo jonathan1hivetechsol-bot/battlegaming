@@ -1,29 +1,64 @@
 import { supabase } from '../../../lib/supabase'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
+import { SchemaMarkup } from '../../components/SchemaMarkup'
 
-// Cache revalidation time (1 ghanta). PSEO ke liye best hai.
+// Cache revalidation time (1 hour). PSEO ke liye best hai.
 export const revalidate = 3600;
 
 // Dynamic SEO Metadata generate karne ke liye
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://battlegaming.store';
   
   const { data } = await supabase
     .from('cod_accounts')
-    .select('meta_title, meta_description')
+    .select('meta_title, meta_description, game_version, platform, wins, region, price')
     .eq('slug', resolvedParams.slug)
     .single();
 
   if (!data) return { title: 'Account Not Found' };
 
+  const canonicalUrl = `${baseUrl}/accounts/${resolvedParams.slug}`;
+
   return {
     title: data.meta_title,
     description: data.meta_description,
+    canonical: canonicalUrl,
+    openGraph: {
+      title: data.meta_title,
+      description: data.meta_description,
+      url: canonicalUrl,
+      type: 'website',
+      siteName: 'BattleGaming',
+      images: [
+        {
+          url: `${baseUrl}/logo.svg`,
+          width: 1200,
+          height: 630,
+          alt: 'BattleGaming - Premium Call of Duty Accounts',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: data.meta_title,
+      description: data.meta_description,
+      images: [`${baseUrl}/logo.svg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   }
 }
 
 export default async function AccountPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://battlegaming.store';
 
   // Supabase se data fetch kar rahe hain
   const { data: account, error } = await supabase
@@ -37,8 +72,29 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  const canonicalUrl = `${baseUrl}/accounts/${resolvedParams.slug}`;
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-blue-500/30">
+    <>
+      {/* Canonical Tag for duplicate prevention */}
+      <link rel="canonical" href={canonicalUrl} />
+      
+      {/* JSON-LD Schema Markup */}
+      <SchemaMarkup
+        product={{
+          name: account.meta_title,
+          description: account.meta_description,
+          price: account.price,
+          url: canonicalUrl,
+          image: `${baseUrl}/logo.svg`,
+          game: account.game_version,
+          platform: account.platform,
+          wins: account.wins,
+          region: account.region,
+        }}
+      />
+
+      <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-blue-500/30">
       <main className="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         
         {/* Breadcrumb */}
@@ -116,5 +172,6 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
         </div>
       </main>
     </div>
+    </>
   )
 }

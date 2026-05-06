@@ -1,0 +1,59 @@
+# BattleGaming.store Robots.txt
+# Last Updated: May 6, 2026
+
+# Default rules for all user agents
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+Allow: /accounts/
+Allow: /privacy
+Allow: /terms
+Allow: /cookies
+Allow: /about
+Allow: /contact
+Allow: /news
+Allow: /tournament
+
+# Disallow empty or duplicate filter combinations
+Disallow: /?*
+Disallow: /*?*
+Disallow: /*filter*
+Disallow: /*sort*
+Disallow: /*utm_*
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.next/
+Disallow: /node_modules/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Google specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+Request-rate: 30/1m
+
+# Bing specific rules
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+Request-rate: 30/1m
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://battlegaming.store/sitemap.xml
+Sitemap: https://battlegaming.store/sitemap.xml?type=accounts
