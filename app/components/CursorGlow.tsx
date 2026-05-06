@@ -18,7 +18,7 @@ export default function CursorGlow() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverState, setHoverState] = useState<HoverState>('default');
   const particleIdRef = useRef(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | null>(null);
   const targetPosRef = useRef({ x: 0, y: 0 });
 
   // Smooth cursor movement using lerp
