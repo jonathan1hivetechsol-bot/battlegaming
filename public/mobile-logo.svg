@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 50" width="150" height="50">
+  <defs>
+    <style>
+      .text { font-family: 'Arial', sans-serif; font-weight: 900; font-size: 28px; fill: #ffffff; letter-spacing: -1px; }
+      .accent { fill: #45f882; }
+      .subtext { font-family: 'Arial', sans-serif; font-weight: bold; font-size: 7px; fill: #45f882; letter-spacing: 1px; }
+      .icon { fill: #45f882; }
+    </style>
+  </defs>
+  
+  <!-- Gaming Icon Mini -->
+  <g transform="translate(5, 10)">
+    <circle cx="8" cy="8" r="5.5" class="icon" opacity="0.3"/>
+    <circle cx="5" cy="6" r="1.5" class="accent"/>
+    <circle cx="11" cy="6" r="1.5" class="accent"/>
+    <rect x="6.5" y="9" width="3" height="2" rx="1" class="accent"/>
+  </g>
+  
+  <!-- Text -->
+  <text class="text" x="22" y="30">BG</text>
+  
+  <!-- Accent -->
+  <line x1="48" y1="8" x2="148" y2="8" stroke="#45f882" stroke-width="1.5"/>
+  <line x1="48" y1="40" x2="148" y2="40" stroke="#45f882" stroke-width="1.5"/>
+  
+  <!-- Tagline -->
+  <text class="subtext" x="50" y="22">BATTLE</text>
+  <text class="subtext" x="50" y="34">GAMING</text>
+</svg>
