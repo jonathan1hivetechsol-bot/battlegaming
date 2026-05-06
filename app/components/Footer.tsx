@@ -108,9 +108,17 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-[#FF7828]/20">
-          <p className="text-gray-400 text-xs">
-            © {currentYear} BattleGaming.store. All rights reserved.
-          </p>
+          <div className="text-center md:text-left">
+            <p className="text-gray-400 text-xs mb-2">
+              © {currentYear} BattleGaming.store. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-xs">
+              Contact: <a href="mailto:contact@digizaro.com" className="text-[#FF7828] hover:text-white transition-colors">contact@digizaro.com</a>
+            </p>
+            <p className="text-gray-500 text-xs mt-1">
+              Powered by <a href="https://digizaro.com" target="_blank" rel="noopener noreferrer" className="text-[#FF7828] hover:text-white transition-colors">Digizaro.com</a>
+            </p>
+          </div>
           <div className="flex gap-6 text-xs">
             <span className="text-[#FF7828]">✓ 100% Verified Accounts</span>
             <span className="text-[#FF7828]">✓ Instant Delivery</span>
