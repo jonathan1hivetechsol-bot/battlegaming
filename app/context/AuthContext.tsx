@@ -79,6 +79,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       setLoading(true);
 
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
       // Sign up with Supabase Auth
       const { data: { user: newUser }, error: signUpError } = await supabase.auth.signUp({
         email,
@@ -87,11 +93,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           data: {
             display_name: displayName,
           },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
         },
       });
 
-      if (signUpError) throw signUpError;
-      if (!newUser) throw new Error('Sign up failed');
+      if (signUpError) {
+        // Handle specific Supabase errors
+        if (signUpError.message.includes('already registered')) {
+          throw new Error('This email is already registered. Please sign in instead.');
+        }
+        if (signUpError.message.includes('invalid')) {
+          throw new Error('Invalid email address. Please check and try again.');
+        }
+        throw new Error(signUpError.message || 'Sign up failed');
+      }
+      
+      if (!newUser) throw new Error('Sign up failed. Please try again.');
 
       // Create user profile in database
       const { error: profileError } = await supabase
@@ -105,11 +122,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           },
         ]);
 
-      if (profileError) throw profileError;
+      if (profileError) {
+        // Log the error but don't block signup - user can still sign in
+        console.warn('Profile creation warning:', profileError);
+        // Only throw if it's a critical error
+        if (profileError.message && profileError.message.includes('permission')) {
+          throw new Error('Account created but profile setup failed. Please contact support.');
+        }
+      }
 
       setUser(newUser);
     } catch (err: any) {
-      setError(err.message || 'Sign up failed');
+      const errorMsg = err.message || 'Sign up failed. Please try again.';
+      setError(errorMsg);
       throw err;
     } finally {
       setLoading(false);
@@ -121,15 +146,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       setLoading(true);
 
+      // Validate inputs
+      if (!email || !password) {
+        throw new Error('Email and password are required');
+      }
+
       const { data: { user: signedInUser }, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (signInError) throw signInError;
-      if (!signedInUser) throw new Error('Sign in failed');
+      if (signInError) {
+        // Handle specific Supabase errors
+        if (signInError.message.includes('Invalid login credentials')) {
+          throw new Error('Invalid email or password. Please try again.');
+        }
+        if (signInError.message.includes('Email not confirmed')) {
+          throw new Error('Please confirm your email first. Check your inbox for the verification link.');
+        }
+        throw new Error(signInError.message || 'Sign in failed');
+      }
+      
+      if (!signedInUser) throw new Error('Sign in failed. Please try again.');
 
-      // Fetch user profile
+      // Fetch user profile (optional - user can still sign in if profile missing)
       const { data: profile } = await supabase
         .from('user_profiles')
         .select('*')
@@ -137,9 +177,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .single();
 
       setUser(signedInUser);
-      setUserProfile(profile);
+      setUserProfile(profile || null);
     } catch (err: any) {
-      setError(err.message || 'Sign in failed');
+      const errorMsg = err.message || 'Sign in failed. Please try again.';
+      setError(errorMsg);
       throw err;
     } finally {
       setLoading(false);
