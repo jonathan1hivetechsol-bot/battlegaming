@@ -11,10 +11,48 @@ interface SchemaMarkupProps {
     platform: string;
     wins: number;
     region: string;
+    average_rating?: number;
+    review_count?: number;
+    reviews?: Array<{
+      reviewer_name: string;
+      rating: number;
+      review_text: string;
+      verified_purchase: boolean;
+    }>;
+    buying_amount?: number;
   };
 }
 
 export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
+  // Use actual ratings from database, fallback to defaults
+  const ratingValue = product.average_rating?.toFixed(1) || '4.9';
+  const ratingCount = product.review_count?.toString() || (product.buying_amount?.toString() || '50000');
+  const reviews = product.reviews?.map(review => ({
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: review.rating.toString(),
+    },
+    author: {
+      '@type': 'Person',
+      name: review.reviewer_name,
+    },
+    reviewBody: review.review_text,
+  })) || [
+    {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Verified Buyer',
+      },
+      reviewBody: 'Excellent service, account delivered instantly with full security. Highly recommend!',
+    },
+  ];
+
   const schema = {
     '@context': 'https://schema.org/',
     '@type': 'Product',
@@ -48,39 +86,12 @@ export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '50000',
+      ratingValue: ratingValue,
+      ratingCount: ratingCount,
       bestRating: '5',
       worstRating: '1',
     },
-    review: [
-      {
-        '@type': 'Review',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-        },
-        author: {
-          '@type': 'Person',
-          name: 'Verified Buyer',
-        },
-        reviewBody:
-          'Excellent service, account delivered instantly with full security. Highly recommend!',
-      },
-      {
-        '@type': 'Review',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-        },
-        author: {
-          '@type': 'Person',
-          name: 'Pro Player',
-        },
-        reviewBody:
-          'BattleGaming is the most trusted verified account provider. 24/7 support is amazing.',
-      },
-    ],
+    review: reviews,
     potentialAction: {
       '@type': 'BuyAction',
       target: {

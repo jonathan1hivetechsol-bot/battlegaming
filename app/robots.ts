@@ -1,15 +1,21 @@
 import { MetadataRoute } from 'next';
 
 const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.yourdomain.com';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://battlegaming.store';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/admin'],
+        crawlDelay: 0,
+      },
+      {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/api', '/contact'],
+        disallow: ['/admin', '/api/debug-account', '/api/contact'],
         crawlDelay: 1,
       },
       {

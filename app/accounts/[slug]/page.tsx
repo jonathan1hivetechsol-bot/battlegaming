@@ -5,8 +5,8 @@ import { SchemaMarkup } from '../../components/SchemaMarkup'
 import BuyNowButton from '../../components/BuyNowButton'
 import ProductWhatsAppButton from '../../components/ProductWhatsAppButton'
 
-// Cache revalidation time (1 hour). PSEO ke liye best hai.
-export const revalidate = 3600;
+// Revalidate on every request to show fresh data from database
+export const revalidate = 0;
 
 /**
  * generateMetadata - Dynamic SEO for all 1,260+ product pages
@@ -133,6 +133,10 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
           platform: account.platform,
           wins: account.wins,
           region: account.region,
+          average_rating: account.average_rating,
+          review_count: account.review_count,
+          reviews: account.reviews,
+          buying_amount: account.buying_amount,
         }}
       />
 
