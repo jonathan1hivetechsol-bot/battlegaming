@@ -359,4 +359,4 @@ For issues or questions:
 1. Check the troubleshooting section above
 2. Review Supabase documentation: https://supabase.com/docs
 3. Check browser console for error messages
-4. Contact BattleGaming support at support@battlegaming.store
+4. Contact BattleGaming support at contact@digizaro.com

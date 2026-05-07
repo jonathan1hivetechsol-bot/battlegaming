@@ -125,7 +125,7 @@ export default function TermsPage() {
                 <strong className="text-white">Refund Eligibility:</strong> Refunds are available for accounts that have not been modified, transferred, or compromised. You must contact support within 30 days of purchase.
               </p>
               <p className="leading-relaxed">
-                <strong className="text-white">Dispute Resolution:</strong> If you believe you were charged incorrectly, contact us at support@battlegaming.store within 60 days of the charge.
+                <strong className="text-white">Dispute Resolution:</strong> If you believe you were charged incorrectly, contact us at contact@digizaro.com within 60 days of the charge.
               </p>
             </div>
           </section>
@@ -233,7 +233,7 @@ export default function TermsPage() {
               If you have questions about these Terms of Service:
             </p>
             <div className="space-y-2">
-              <p><strong className="text-white">Support Email:</strong> <a href="mailto:support@battlegaming.store" className="text-[#FF7828] hover:text-white transition-colors">support@battlegaming.store</a></p>
+              <p><strong className="text-white">Support Email:</strong> <a href="mailto:contact@digizaro.com" className="text-[#FF7828] hover:text-white transition-colors">contact@digizaro.com</a></p>
               <p><strong className="text-white">Legal Inquiries:</strong> <a href="mailto:legal@battlegaming.store" className="text-[#FF7828] hover:text-white transition-colors">legal@battlegaming.store</a></p>
               <p><strong className="text-white">Website:</strong> battlegaming.store</p>
               <p><strong className="text-white">Availability:</strong> 24/7 Support Team</p>

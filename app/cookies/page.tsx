@@ -249,7 +249,7 @@ export default function CookiesPage() {
             </p>
             <div className="space-y-2">
               <p><strong className="text-white">Privacy Email:</strong> <a href="mailto:privacy@battlegaming.store" className="text-[#FF7828] hover:text-white transition-colors">privacy@battlegaming.store</a></p>
-              <p><strong className="text-white">Support Email:</strong> <a href="mailto:support@battlegaming.store" className="text-[#FF7828] hover:text-white transition-colors">support@battlegaming.store</a></p>
+              <p><strong className="text-white">Support Email:</strong> <a href="mailto:contact@digizaro.com" className="text-[#FF7828] hover:text-white transition-colors">contact@digizaro.com</a></p>
               <p><strong className="text-white">Website:</strong> battlegaming.store</p>
               <p><strong className="text-white">Support Hours:</strong> 24/7 Available</p>
             </div>

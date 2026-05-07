@@ -90,7 +90,7 @@ export default function RefundPolicy() {
             <div className="bg-[#1a1a3e]/60 p-6 rounded-lg border border-[#FF7828]/30 space-y-4">
               <div>
                 <h3 className="font-bold text-[#FF7828] mb-2">Step 1: Contact Support</h3>
-                <p className="text-sm">Email us at <strong>support@battlegaming.store</strong> or message us via WhatsApp: <strong>+1-780-851-1699</strong></p>
+                <p className="text-sm">Email us at <strong>contact@digizaro.com</strong> or message us via WhatsApp: <strong>+1-780-851-1699</strong></p>
               </div>
               <div>
                 <h3 className="font-bold text-[#FF7828] mb-2">Step 2: Provide Order Details</h3>
@@ -152,7 +152,7 @@ export default function RefundPolicy() {
             <h2 className="text-2xl font-bold text-[#FF7828] mb-4">Questions About Your Refund?</h2>
             <p className="mb-4">Contact our support team immediately:</p>
             <div className="space-y-2">
-              <p><strong>Email:</strong> support@battlegaming.store</p>
+              <p><strong>Email:</strong> contact@digizaro.com</p>
               <p><strong>WhatsApp:</strong> +1-780-851-1699</p>
               <p><strong>Response Time:</strong> Usually within 2 hours</p>
             </div>

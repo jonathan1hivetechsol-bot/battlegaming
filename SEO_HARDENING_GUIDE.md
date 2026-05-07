@@ -44,7 +44,7 @@ This document outlines the comprehensive E-E-A-T (Expertise, Authoritativeness, 
     "seller": {
       "name": "BattleGaming",
       "telephone": "+1-780-851-1699",
-      "email": "support@battlegaming.store"
+      "email": "contact@digizaro.com"
     }
   },
   "aggregateRating": {
