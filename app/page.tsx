@@ -29,14 +29,6 @@ async function getAllAccounts() {
     return [];
   }
 
-  // Log first 3 accounts to verify prices
-  if (accounts && accounts.length > 0) {
-    console.log('📊 HOMEPAGE ACCOUNTS FETCHED:');
-    accounts.slice(0, 3).forEach((acc: any, i: number) => {
-      console.log(`[${i}] ${acc.meta_title} - Price: $${acc.price}`);
-    });
-  }
-
   return (accounts as Account[]) || [];
 }
 
