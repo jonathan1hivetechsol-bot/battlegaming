@@ -74,7 +74,7 @@ export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
         '@type': 'Organization',
         name: 'BattleGaming',
         url: 'https://battlegaming.store',
-        telephone: '+1-780-851-1699',
+        telephone: '+15795507750',
         email: 'contact@digizaro.com',
         sameAs: ['https://twitter.com/battlegaming', 'https://facebook.com/battlegaming'],
         address: {
@@ -123,7 +123,7 @@ export const OrganizationSchema = () => {
     url: 'https://battlegaming.store',
     logo: 'https://battlegaming.store/logo.svg',
     description: 'Elite verified Call of Duty accounts with instant delivery and lifetime warranty',
-    telephone: '+1-780-851-1699',
+    telephone: '+15795507750',
     email: 'contact@digizaro.com',
     address: {
       '@type': 'PostalAddress',
@@ -137,7 +137,7 @@ export const OrganizationSchema = () => {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-780-851-1699',
+      telephone: '+15795507750',
       contactType: 'Customer Support',
       email: 'contact@digizaro.com',
       areaServed: ['US', 'UK', 'CA'],

@@ -43,7 +43,7 @@ This document outlines the comprehensive E-E-A-T (Expertise, Authoritativeness, 
     "availability": "InStock",
     "seller": {
       "name": "BattleGaming",
-      "telephone": "+1-780-851-1699",
+      "telephone": "+15795507750",
       "email": "contact@digizaro.com"
     }
   },
@@ -356,7 +356,7 @@ npm install resend
 - ✅ **Pre-filled Message**: "I am interested in BattleGaming accounts"
 - ✅ **Direct Link**: Opens WhatsApp Web/Mobile app
 
-**Contact Number**: +1-780-851-1699
+**Contact Number**: +15795507750
 
 **Pre-filled Text**: "I am interested in BattleGaming accounts"
 

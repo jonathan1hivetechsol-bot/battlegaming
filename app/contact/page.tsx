@@ -54,7 +54,7 @@ export default function Contact() {
             <div className="bg-[#1a1a3e]/60 p-8 rounded-lg border border-[#FF7828]/30 hover:border-[#FF7828] transition-all duration-300 text-center">
               <div className="text-6xl mb-4">💚</div>
               <h3 className="text-lg font-bold text-[#FF7828] mb-2">WhatsApp</h3>
-              <p className="text-gray-300 text-sm mb-4">+1-780-851-1699</p>
+              <p className="text-gray-300 text-sm mb-4">+15795507750</p>
               <div className="text-xs text-[#FF7828] font-bold">💬 Instant chat</div>
             </div>
             <div className="bg-[#1a1a3e]/60 p-8 rounded-lg border border-[#FF7828]/30 hover:border-[#FF7828] transition-all duration-300 text-center">
@@ -169,7 +169,7 @@ export default function Contact() {
               </div>
               <div className="bg-[#1a1a3e]/60 p-8 rounded-lg border border-[#FF7828]/30 hover:border-[#FF7828]/60 transition-all duration-300">
                 <h3 className="text-lg font-bold text-[#FF7828] mb-3">📞 How do I contact support?</h3>
-                <p className="text-gray-300 leading-relaxed">Multiple options: Live chat (instant), Email (contact@digizaro.com), WhatsApp (+1-780-851-1699), or this contact form. We respond within 2 hours guaranteed or your money back.</p>
+                <p className="text-gray-300 leading-relaxed">Multiple options: Live chat (instant), Email (contact@digizaro.com), WhatsApp (+15795507750), or this contact form. We respond within 2 hours guaranteed or your money back.</p>
               </div>
             </div>
           </div>
