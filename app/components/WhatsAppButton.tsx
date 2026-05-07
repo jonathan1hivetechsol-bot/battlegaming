@@ -24,7 +24,7 @@ export default function WhatsAppButton() {
       
       {/* Tooltip */}
       <div className="absolute bottom-full right-0 mb-2 bg-[#25D366] text-white text-xs md:text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap font-semibold shadow-lg">
-        +1 (780) 851-1699
+        +1 (579) 550-7750
       </div>
     </a>
   );
