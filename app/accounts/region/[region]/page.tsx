@@ -99,6 +99,11 @@ export default async function RegionPage({ params }: RegionPageProps) {
       platform: account.platform,
       wins: account.wins,
       price: account.price,
+      average_rating: account.average_rating,
+      review_count: account.review_count,
+      reviews: account.reviews,
+      unique_description: account.unique_description,
+      buying_amount: account.buying_amount,
     }));
 
     return (

@@ -18,7 +18,7 @@ export default function BuyNowButton({
   slug,
 }: BuyNowButtonProps) {
   // WhatsApp number - correct number
-  const whatsappNumber = '17808511699'; // BattleGaming WhatsApp
+  const whatsappNumber = '15795507750'; // BattleGaming WhatsApp
   
   // Create pre-filled message with exact format
   const message = `Hi BattleGaming, I want to buy the ${gameVersion} account with ${wins} wins on ${platform} for the ${region} region. Is it available?`;

@@ -260,7 +260,7 @@ Visit homepage: `https://battlegaming.store`
 Check bottom-right corner:
 - ✅ Green WhatsApp button visible
 - ✅ Hover effect works (scales up)
-- ✅ Click opens: `https://wa.me/17808511699`
+- ✅ Click opens: `https://wa.me/15795507750`
 
 ---
 

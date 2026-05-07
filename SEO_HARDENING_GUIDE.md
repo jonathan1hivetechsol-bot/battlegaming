@@ -337,7 +337,7 @@ npm install resend
 **Implementation**:
 ```tsx
 <a
-  href="https://wa.me/17808511699?text=I%20am%20interested%20in%20BattleGaming%20accounts"
+  href="https://wa.me/15795507750?text=I%20am%20interested%20in%20BattleGaming%20accounts"
   target="_blank"
   rel="noopener noreferrer"
   title="Contact us on WhatsApp"

@@ -15,7 +15,7 @@ export default function ProductWhatsAppButton({
   wins,
   price,
 }: ProductWhatsAppButtonProps) {
-  const whatsappNumber = '17808511699';
+  const whatsappNumber = '15795507750';
   
   // Pre-filled message with product details
   const message = `Hi BattleGaming! I'm interested in the ${game} account on ${platform} with ${wins} wins for $${price}. Product: ${productTitle}`;

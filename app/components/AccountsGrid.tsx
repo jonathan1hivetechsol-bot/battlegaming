@@ -11,6 +11,11 @@ interface Account {
   platform: string;
   wins: number;
   price: number;
+  average_rating?: number;
+  review_count?: number;
+  reviews?: any[];
+  unique_description?: string;
+  buying_amount?: number;
 }
 
 interface AccountsGridProps {
@@ -189,6 +194,23 @@ export default function AccountsGrid({ initialAccounts }: AccountsGridProps) {
                       {account.platform}
                     </span>
                   </div>
+
+                  {/* Ratings and Reviews */}
+                  {account.average_rating && account.review_count ? (
+                    <div className="flex items-center gap-3 mb-4 text-sm">
+                      <div className="flex items-center gap-1">
+                        <span className="text-[#FF7828] font-bold">{account.average_rating.toFixed(1)}</span>
+                        <div className="flex gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className={i < Math.round(account.average_rating || 0) ? 'text-[#FF7828]' : 'text-gray-600'}>
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <span className="text-gray-400">({account.review_count} {account.review_count === 1 ? 'review' : 'reviews'})</span>
+                    </div>
+                  ) : null}
 
                   {/* Stats Grid */}
                   <div className="grid grid-cols-2 gap-3 mb-6">

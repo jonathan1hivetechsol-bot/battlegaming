@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase';
 import AccountsGrid from './components/AccountsGrid';
 
-export const revalidate = 3600; // ISR - revalidate every hour
+export const revalidate = 60; // ISR - revalidate every 60 seconds for fresh pricing/reviews
 
 interface Account {
   id: string;
@@ -11,12 +11,17 @@ interface Account {
   platform: string;
   wins: number;
   price: number;
+  average_rating?: number;
+  review_count?: number;
+  reviews?: any[];
+  unique_description?: string;
+  buying_amount?: number;
 }
 
 async function getAllAccounts() {
   const { data: accounts, error } = await supabase
     .from('cod_accounts')
-    .select('id, slug, meta_title, game_version, platform, wins, price')
+    .select('id, slug, meta_title, game_version, platform, wins, price, average_rating, review_count, reviews, unique_description, buying_amount')
     .order('created_at', { ascending: false });
 
   if (error) {
