@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   const { data } = await supabase
     .from('cod_accounts')
-    .select('meta_title, meta_description, game_version, platform, wins, region, price')
+    .select('meta_title, meta_description, game_version, platform, wins, region, price, unique_description, average_rating, buying_amount, review_count')
     .eq('slug', resolvedParams.slug)
     .single();
 
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: data.meta_title,
     description: description,
-    keywords: `${data.game_version} account, ${data.platform}, ${data.wins} wins, ${data.region}, verified account, instant delivery`,
+    keywords: `${data.game_version} account, ${data.platform}, ${data.wins} wins, ${data.region}, verified account, instant delivery, real reviews, trusted seller`,
     
     // Canonical Fix: Self-referencing canonical with process.env variable
     alternates: {
@@ -68,10 +68,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       googleBot: 'index, follow',
     },
 
-    // Open Graph for Social Media
+    // Open Graph for Social Media - Include rating and reviews
     openGraph: {
       title: data.meta_title,
-      description: description,
+      description: `${description} | ⭐ ${data.average_rating?.toFixed(1) || '5.0'}/5 (${data.review_count || 0} reviews)`,
       url: canonicalUrl,
       type: 'website',
       siteName: 'BattleGaming',
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
           url: `${baseUrl}/og-image.png`,
           width: 1200,
           height: 630,
-          alt: `${data.game_version} Account - ${data.wins} Wins on ${data.platform}`,
+          alt: `${data.game_version} Account - ${data.wins} Wins on ${data.platform} | $${data.price}`,
           type: 'image/png',
         },
       ],
@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     twitter: {
       card: 'summary_large_image',
       title: data.meta_title,
-      description: description,
+      description: `⭐ ${data.average_rating?.toFixed(1) || '5.0'}/5 • ${description.substring(0, 100)}...`,
       images: [`${baseUrl}/og-image.png`],
       creator: '@BattleGaming',
     },
@@ -156,6 +156,60 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
               <div dangerouslySetInnerHTML={{ __html: account.page_content }} />
             </div>
 
+            {/* Unique Description Section */}
+            {account.unique_description && (
+              <div className="bg-gradient-to-r from-[#FF7828]/10 to-transparent p-6 rounded-lg border border-[#FF7828]/30">
+                <h2 className="text-xl font-bold text-[#FF7828] mb-3">Account Details</h2>
+                <p className="text-gray-300 leading-relaxed">{account.unique_description}</p>
+              </div>
+            )}
+
+            {/* Reviews Section */}
+            {account.reviews && account.reviews.length > 0 && (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-white">Customer Reviews</h2>
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl font-black text-[#FF7828]">{account.average_rating?.toFixed(1) || '5.0'}</span>
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className={i < Math.round(account.average_rating || 5) ? 'text-[#FF7828]' : 'text-gray-600'}>
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <span className="text-sm text-gray-400 ml-2">({account.review_count} reviews)</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {account.reviews.map((review: any, idx: number) => (
+                    <div key={idx} className="bg-[#1a1a3e]/60 border border-[#FF7828]/20 p-4 rounded-lg hover:border-[#FF7828]/40 transition-all duration-300">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <p className="font-semibold text-white flex items-center gap-2">
+                            {review.reviewer_name}
+                            {review.verified_purchase && (
+                              <span className="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded">✓ Verified</span>
+                            )}
+                          </p>
+                          <p className="text-xs text-gray-500">Verified Purchase</p>
+                        </div>
+                        <div className="flex gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className={i < review.rating ? 'text-[#FF7828]' : 'text-gray-600'} style={{ fontSize: '14px' }}>
+                              ★
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-gray-300 text-sm leading-relaxed">{review.review_text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
               <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
@@ -174,17 +228,52 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
                 <p className="text-sm text-gray-400 mb-2">Delivery</p>
                 <p className="font-black text-[#FF7828] text-lg">{account.delivery_time}</p>
               </div>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Sold</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.buying_amount || 0}+</p>
+              </div>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Rating</p>
+                <div className="flex items-center gap-1">
+                  <span className="font-black text-[#FF7828]">{account.average_rating?.toFixed(1) || '5.0'}</span>
+                  <span className="text-[#FF7828]">★</span>
+                </div>
+              </div>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Region</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.region}</p>
+              </div>
+              <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
+                <p className="text-sm text-gray-400 mb-2">Reviews</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.review_count || 0}</p>
+              </div>
             </div>
           </div>
 
           {/* Right Column: WhatsApp Buy Now */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              {/* Price Header */}
+              {/* Price Header with Rating */}
               <div className="bg-gradient-to-r from-[#FF7828]/20 to-transparent p-6 rounded-lg border border-[#FF7828]/40 mb-6">
-                <p className="text-sm text-gray-400 mb-2">Starting Price</p>
+                <p className="text-sm text-gray-400 mb-2">Account Price</p>
                 <p className="text-5xl font-black text-[#FF7828]">${account.price.toFixed(2)}</p>
-                <p className="text-xs text-gray-500 mt-2">Region: {account.region}</p>
+                <div className="flex items-center gap-2 mt-3">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className={i < Math.round(account.average_rating || 5) ? 'text-[#FF7828]' : 'text-gray-600'} style={{ fontSize: '14px' }}>
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-xs text-gray-400">({account.review_count || 0} verified reviews)</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-3">
+                  ✓ {account.buying_amount || 0}+ customers
+                  <br />
+                  ✓ {account.region} Region
+                  <br />
+                  ✓ Instant Delivery
+                </p>
               </div>
 
               {/* Buy Now Button */}
