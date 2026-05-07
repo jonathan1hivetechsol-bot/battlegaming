@@ -5,8 +5,9 @@ import { SchemaMarkup } from '../../components/SchemaMarkup'
 import BuyNowButton from '../../components/BuyNowButton'
 import ProductWhatsAppButton from '../../components/ProductWhatsAppButton'
 
-// Revalidate on every request to show fresh data from database
-export const revalidate = 0;
+// Revalidate every 60 seconds for optimal performance + fresh data
+// ISR: Pages cached for 60s, then regenerated in background
+export const revalidate = 60;
 
 /**
  * generateMetadata - Dynamic SEO for all 1,260+ product pages

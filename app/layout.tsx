@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import CursorGlow from "./components/CursorGlow";
-import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CursorGlow from "./components/CursorGlow";
+import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { OrganizationSchema } from "./components/SchemaMarkup";
 import { AuthProvider } from "./context/AuthContext";
@@ -73,8 +73,40 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
+      <head>
+        {/* Preload critical resources */}
+        <link rel="preload" as="font" href="/fonts/geist-sans.woff2" type="font/woff2" crossOrigin="anonymous" />
+        
+        {/* Prefetch DNS for external services */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://pkvpfqxqhvyzmcjbplwx.supabase.co" />
+        
+        {/* Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://pkvpfqxqhvyzmcjbplwx.supabase.co" crossOrigin="anonymous" />
+        
+        {/* Critical CSS inline - Prevent render-blocking */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            html {
+              background-color: #0d071a;
+              color: #ffffff;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              background-color: #0d071a;
+              color: #ffffff;
+              font-family: system-ui, -apple-system, sans-serif;
+            }
+            main {
+              flex: 1;
+            }
+          `
+        }} />
+      </head>
       <body className="min-h-full flex flex-col bg-[#0d071a] text-white" suppressHydrationWarning>
         <AuthProvider>
           {/* Scroll to Top on Navigation */}
