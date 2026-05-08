@@ -62,6 +62,7 @@ export const metadata: Metadata = {
   other: {
     'ai-policies': '/ai.txt',
     'crawler-policy': 'https://battlegaming.store/ai.txt',
+    'p:domain_verify': 'b0b3cd7bbd2816fe9c401e665de2e14b',
   },
 };
 
