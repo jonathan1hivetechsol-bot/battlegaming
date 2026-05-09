@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase';
+import { Suspense } from 'react';
 import AccountsGrid from './components/AccountsGrid';
 
 export const revalidate = 60; // ISR - revalidate every 60 seconds for fresh pricing/reviews
@@ -254,7 +255,9 @@ export default async function Home() {
 
       {/* Accounts Section with Interactive Grid */}
       <section id="accounts" className="py-20 px-4">
-        <AccountsGrid initialAccounts={accounts} />
+        <Suspense fallback={<div className="h-96 bg-[#1a1a3e]/30 rounded-lg animate-pulse max-w-6xl mx-auto" />}>
+          <AccountsGrid initialAccounts={accounts} />
+        </Suspense>
         
         {/* CRAWLER-FRIENDLY LINKS (Hidden but crawlable) */}
         {/* Fixes: Low Discovery + Broken paths */}
