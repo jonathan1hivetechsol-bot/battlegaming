@@ -37,7 +37,8 @@ CREATE INDEX IF NOT EXISTS idx_account_reviews_verified ON account_reviews(verif
 -- Enable RLS for reviews if needed
 ALTER TABLE account_reviews ENABLE ROW LEVEL SECURITY;
 
--- Allow public read access to reviews
+-- Allow public read access to reviews (drop if exists to avoid conflicts)
+DROP POLICY IF EXISTS "Public can read account reviews" ON account_reviews;
 CREATE POLICY "Public can read account reviews" ON account_reviews
   FOR SELECT USING (true);
 

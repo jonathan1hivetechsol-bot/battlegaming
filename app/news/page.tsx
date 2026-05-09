@@ -145,7 +145,6 @@ export default function News() {
               </Link>
             ))}
           </div>
-          </div>
 
           {/* Newsletter */}
           <div className="mt-20 bg-gradient-to-r from-[#1a1a3e] to-[#2d1b4e] p-12 rounded-lg border border-[#FF7828]/30">
