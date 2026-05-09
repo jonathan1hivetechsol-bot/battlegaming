@@ -15,42 +15,62 @@ const articles = [
     category: 'Guide',
     image: '🎮',
     author: 'BattleGaming Team',
-    content: `
-      <h2>Master the Fundamentals of Call of Duty</h2>
-      <p>Whether you're just starting your Call of Duty journey or looking to improve your gameplay, mastering these 10 core strategies will significantly enhance your performance on the battlefield.</p>
-      
-      <h3>1. Map Control & Positioning</h3>
-      <p>Understanding map layout is crucial. Learn key positions, chokepoints, and sightlines. Familiarize yourself with spawning locations and rotations to always stay ahead of your enemies.</p>
-      
-      <h3>2. Weapon Selection Strategy</h3>
-      <p>Different weapons excel in different situations. Use close-range weapons (SMGs) indoors, assault rifles for medium range, and sniper rifles for long-distance engagements. Practice weapon recoil control in gunfights.</p>
-      
-      <h3>3. Team Communication</h3>
-      <p>Effective communication with teammates is essential. Call out enemy positions, coordinate pushes, and maintain team cohesion. Use clear, concise callouts to help your team make informed decisions.</p>
-      
-      <h3>4. Aim and Sensitivity Settings</h3>
-      <p>Find the right sensitivity setting that allows smooth aiming and quick target acquisition. Practice in aim trainers to develop muscle memory and improve reaction times.</p>
-      
-      <h3>5. Sound Awareness</h3>
-      <p>Footsteps, gunshots, and killstreak audio cues provide valuable information. Wear headphones and learn to identify enemy movements through audio queues to stay alert.</p>
-      
-      <h3>6. Loadout Customization</h3>
-      <p>Tailor your loadout to your playstyle. Experiment with attachments, perks, and equipment. Create loadouts for different scenarios: aggressive rushing, defensive holding, or balanced gameplay.</p>
-      
-      <h3>7. Game Mode Awareness</h3>
-      <p>Each game mode requires different strategies. Learn objective-based gameplay for Team Deathmatch, Domination, and Search & Destroy. Understand rotation patterns and high-value positions.</p>
-      
-      <h3>8. Enemy Prediction</h3>
-      <p>Anticipate enemy movements based on the map, game flow, and their previous positions. Pre-aim common angles and corners where enemies are likely to appear.</p>
-      
-      <h3>9. Killstreak Management</h3>
-      <p>Effectively use scorestreaks to turn the tide of battle. Know when to call in support or offensive streaks. Coordinate with teammates to maximize their impact.</p>
-      
-      <h3>10. Consistent Practice & Improvement</h3>
-      <p>Dedicate time to practicing regularly. Watch professional players, analyze your own gameplay, and identify areas for improvement. Consistency is key to climbing the ranks.</p>
-      
-      <p>Remember, improvement comes with dedication and practice. Start with these fundamentals, and gradually build advanced techniques as you progress. Happy gaming!</p>
-    `,
+    content: `<h2>Master the Fundamentals</h2><p>Getting started is easy.</p>`,
+  },
+];
+
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    id: article.id,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const article = articles.find((a) => a.id === params.id);
+
+  if (!article) {
+    return {
+      title: 'Article Not Found',
+      description: 'The article you are looking for does not exist.',
+    };
+  }
+
+  return {
+    title: `${article.title} | BattleGaming News`,
+    description: article.excerpt,
+  };
+}
+
+export default function ArticlePage({ params }: { params: { id: string } }) {
+  const article = articles.find((a) => a.id === params.id);
+
+  if (!article) {
+    notFound();
+  }
+
+  return (
+    <div className="bg-[#0d071a] min-h-screen text-white">
+      <div className="max-w-4xl mx-auto py-12 px-4">
+        <h1 className="text-4xl font-bold mb-4 text-[#FF7828]">{article.title}</h1>
+        <div className="flex gap-4 mb-8 text-gray-400">
+          <span>{article.date}</span>
+          <span>{article.category}</span>
+        </div>
+        <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: article.content }} />
+        <div className="mt-12">
+          <Link href="/news" className="text-[#FF7828] hover:underline">
+            ← Back to News
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
   },
   {
     id: '2',
