@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-// Enable static generation and revalidation
-export const revalidate = 60; // Revalidate every 60 seconds (ISR)
-export const dynamicParams = false; // Only allow static params, return 404 for others
+// Use dynamic rendering for now to get pages loading
+export const dynamic = 'force-dynamic';
 
 // Blog articles data
 const articles = [
