@@ -44,6 +44,12 @@ function getStaticRoutes(baseUrl: string): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/accounts`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'daily' as const,
+      priority: 0.95,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date().toISOString().split('T')[0],
       changeFrequency: 'monthly' as const,

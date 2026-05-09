@@ -94,6 +94,14 @@ export default function Navbar() {
               <div className="absolute -bottom-2 left-0 w-2 h-2 bg-[#FF7828] rounded-full group-hover:shadow-[0_0_15px_#FF7828] transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
             </a>
 
+            {/* Accounts Link */}
+            <a href="/accounts" className="relative group pointer-events-auto">
+              <span className="text-white font-semibold tracking-wide text-sm uppercase group-hover:text-[#FF7828] group-hover:drop-shadow-[0_0_15px_rgba(255,120,40,0.8)] transition-all duration-300">
+                Accounts
+              </span>
+              <div className="absolute -bottom-2 left-0 w-2 h-2 bg-[#FF7828] rounded-full group-hover:shadow-[0_0_15px_#FF7828] transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
+            </a>
+
             {/* About Link */}
             <a
               href="/about"
