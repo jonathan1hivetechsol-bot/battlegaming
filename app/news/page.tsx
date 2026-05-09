@@ -113,7 +113,7 @@ export default function News() {
                 </p>
                 <div className="flex gap-4 items-center text-gray-400 text-sm">
                   <span>📅 {articles[0].date}</span>
-                  <Link href={`/news/articles/${articles[0].id}`} className="text-[#FF7828] font-bold hover:text-[#E86B1F] transition-colors">
+                  <Link href={`/news/article-view/${articles[0].id}`} className="text-[#FF7828] font-bold hover:text-[#E86B1F] transition-colors">
                     Read More →
                   </Link>
                 </div>
@@ -127,7 +127,7 @@ export default function News() {
             {articles.slice(1).map((article) => (
               <Link
                 key={article.id}
-                href={`/news/articles/${article.id}`}
+                href={`/news/article-view/${article.id}`}
                 className="bg-[#1a1a3e]/60 rounded-lg border border-[#FF7828]/30 overflow-hidden hover:border-[#FF7828] hover:shadow-lg hover:shadow-[#FF7828]/20 transition-all"
               >
                 <div className="text-5xl p-6 bg-[#0a0410]">{article.image}</div>
