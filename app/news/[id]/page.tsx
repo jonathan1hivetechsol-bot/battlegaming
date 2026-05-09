@@ -289,6 +289,13 @@ const articles = [
   },
 ];
 
+// Generate static params for all article IDs
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    id: article.id,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: {
