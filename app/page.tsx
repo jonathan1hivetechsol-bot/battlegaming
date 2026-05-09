@@ -9,6 +9,7 @@ interface Account {
   meta_title: string;
   game_version: string;
   platform: string;
+  region: string;
   wins: number;
   price: number;
   average_rating?: number;
@@ -21,7 +22,7 @@ interface Account {
 async function getAllAccounts() {
   const { data: accounts, error } = await supabase
     .from('cod_accounts')
-    .select('id, slug, meta_title, game_version, platform, wins, price, average_rating, review_count, reviews, unique_description, buying_amount')
+    .select('id, slug, meta_title, game_version, platform, region, wins, price, average_rating, review_count, reviews, unique_description, buying_amount')
     .order('created_at', { ascending: false });
 
   if (error) {
