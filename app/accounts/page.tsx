@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import CategoryNavigation from '../components/CategoryNavigation';
 import AccountsGrid from '../components/AccountsGrid';
 
@@ -108,7 +109,9 @@ export default async function AccountsPage() {
       </section>
 
       {/* Category Navigation */}
-      <CategoryNavigation />
+      <Suspense fallback={<div className="h-24 bg-[#1a1a3e]/30" />}>
+        <CategoryNavigation />
+      </Suspense>
 
       {/* Accounts Grid */}
       <section className="relative w-full py-16 md:py-20 overflow-hidden">
@@ -118,7 +121,9 @@ export default async function AccountsPage() {
               <p className="text-gray-400 text-lg">No accounts available at the moment.</p>
             </div>
           ) : (
-            <AccountsGrid initialAccounts={accounts} />
+            <Suspense fallback={<div className="h-96 bg-[#1a1a3e]/30 rounded-lg animate-pulse" />}>
+              <AccountsGrid initialAccounts={accounts} />
+            </Suspense>
           )}
         </div>
       </section>
