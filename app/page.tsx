@@ -254,7 +254,68 @@ export default async function Home() {
       {/* Accounts Section with Interactive Grid */}
       <section id="accounts" className="py-20 px-4">
         <AccountsGrid initialAccounts={accounts} />
+        
+        {/* CRAWLER-FRIENDLY LINKS (Hidden but crawlable) */}
+        {/* Fixes: Low Discovery + Broken paths */}
+        <div className="sr-only" role="navigation" aria-label="All Call of Duty Accounts">
+          <h2>Browse All Call of Duty Accounts</h2>
+          <ul>
+            {accounts.slice(0, 50).map((account) => (
+              <li key={account.id}>
+                <a href={`/accounts/${account.slug}`} title={account.meta_title}>
+                  {account.meta_title} - {account.platform} - ${account.price}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="/accounts" title="View all accounts">
+                View all {accounts.length} accounts
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
+
+      {/* JSON-LD SCHEMA MARKUP */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://battlegaming.store',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'All Accounts',
+                item: 'https://battlegaming.store/accounts',
+              },
+            ],
+          }),
+        }}
+      />
+
+      {/* AGGREGATE OFFERS SCHEMA - Helps Google understand pricing */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'AggregateOffer',
+            priceCurrency: 'USD',
+            lowPrice: Math.min(...accounts.map(a => a.price)),
+            highPrice: Math.max(...accounts.map(a => a.price)),
+            offerCount: accounts.length,
+            url: 'https://battlegaming.store/accounts',
+          }),
+        }}
+      />
     </div>
   );
 }
