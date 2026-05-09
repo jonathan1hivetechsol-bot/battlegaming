@@ -26,7 +26,9 @@ interface SchemaMarkupProps {
 export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
   // Use actual ratings from database, fallback to defaults
   const ratingValue = product.average_rating?.toFixed(1) || '4.9';
-  const ratingCount = product.review_count?.toString() || (product.buying_amount?.toString() || '50000');
+  // Ensure ratingCount is always positive (minimum 1)
+  const reviewCount = product.review_count || product.buying_amount || 0;
+  const ratingCount = Math.max(reviewCount, 1).toString();
   const currentDate = new Date().toISOString().split('T')[0];
   
   const reviews = product.reviews?.map(review => ({
