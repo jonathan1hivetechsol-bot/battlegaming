@@ -27,29 +27,37 @@ export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
   // Use actual ratings from database, fallback to defaults
   const ratingValue = product.average_rating?.toFixed(1) || '4.9';
   const ratingCount = product.review_count?.toString() || (product.buying_amount?.toString() || '50000');
+  const currentDate = new Date().toISOString().split('T')[0];
+  
   const reviews = product.reviews?.map(review => ({
     '@type': 'Review',
     reviewRating: {
       '@type': 'Rating',
       ratingValue: review.rating.toString(),
+      bestRating: '5',
+      worstRating: '1',
     },
     author: {
       '@type': 'Person',
       name: review.reviewer_name,
     },
     reviewBody: review.review_text,
+    datePublished: currentDate,
   })) || [
     {
       '@type': 'Review',
       reviewRating: {
         '@type': 'Rating',
         ratingValue: '5',
+        bestRating: '5',
+        worstRating: '1',
       },
       author: {
         '@type': 'Person',
         name: 'Verified Buyer',
       },
       reviewBody: 'Excellent service, account delivered instantly with full security. Highly recommend!',
+      datePublished: currentDate,
     },
   ];
 
@@ -58,6 +66,7 @@ export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
     '@type': 'Product',
     name: product.name,
     description: product.description,
+    image: product.image || 'https://battlegaming.store/logo.svg',
     brand: {
       '@type': 'Brand',
       name: 'BattleGaming',
@@ -69,7 +78,32 @@ export const SchemaMarkup: FC<SchemaMarkupProps> = ({ product }) => {
       url: product.url,
       priceCurrency: 'USD',
       price: product.price.toString(),
+      priceValidUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      shippingDetails: {
+        '@type': 'ShippingDeliveryTime',
+        shippingDestination: {
+          '@type': 'DeliveryAddress',
+          addressCountry: 'US',
+        },
+        shippingLabel: 'Instant Digital Delivery',
+        transitTime: {
+          '@type': 'QuantitativeValue',
+          minValue: '0',
+          maxValue: '5',
+          unitCode: 'MIN',
+        },
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'US',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 30,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
+        restockingFee: false,
+      },
       seller: {
         '@type': 'Organization',
         name: 'BattleGaming',

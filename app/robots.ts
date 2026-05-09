@@ -8,14 +8,14 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: 'Googlebot',
-        allow: ['/', '/accounts/', '/about', '/news'],
-        disallow: ['/admin', '/api/debug-account', '/api/contact', '/*.json$'],
+        allow: ['/', '/accounts/', '/about', '/news', '/_next/'],
+        disallow: ['/admin', '/api/debug-account', '/api/contact'],
         crawlDelay: 0,
       },
       {
         userAgent: '*',
-        allow: ['/', '/accounts/', '/about', '/news'],
-        disallow: ['/admin', '/api/', '/*.json$'],
+        allow: ['/', '/accounts/', '/about', '/news', '/_next/'],
+        disallow: ['/admin', '/api/'],
         crawlDelay: 1,
       },
       {
