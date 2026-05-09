@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://battlegaming.store/news',
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function News() {
