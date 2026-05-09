@@ -97,6 +97,7 @@ export default async function RegionPage({ params }: RegionPageProps) {
       meta_title: account.meta_title,
       game_version: account.game_version,
       platform: account.platform,
+      region: account.region,
       wins: account.wins,
       price: account.price,
       average_rating: account.average_rating,
