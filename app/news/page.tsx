@@ -8,18 +8,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'BattleGaming News | COD Updates & Gaming Insights',
     description: 'Read the latest news, reviews, and gaming guides from the BattleGaming community.',
-    url: 'https://battlegaming.com/news',
+    url: 'https://battlegaming.store/news',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://battlegaming.com/news',
+    canonical: 'https://battlegaming.store/news',
   },
 };
 
 export default function News() {
   const articles = [
     {
-      id: 1,
+      id: '1',
       title: 'Top 10 Call of Duty Strategies for Beginners',
       excerpt: 'Master the fundamentals with our comprehensive guide to Call of Duty gameplay strategies.',
       date: 'May 1, 2026',
@@ -27,7 +27,7 @@ export default function News() {
       image: '🎮',
     },
     {
-      id: 2,
+      id: '2',
       title: 'Season 4 Weapon Balance Update Analysis',
       excerpt: 'We break down the latest weapon changes and how they impact competitive gameplay.',
       date: 'April 28, 2026',
@@ -35,7 +35,7 @@ export default function News() {
       image: '⚔️',
     },
     {
-      id: 3,
+      id: '3',
       title: 'BattleGaming May Tournament Announced',
       excerpt: 'Join our biggest tournament yet with $15,000 in prizes and exclusive account rewards.',
       date: 'April 25, 2026',
@@ -43,7 +43,7 @@ export default function News() {
       image: '🏆',
     },
     {
-      id: 4,
+      id: '4',
       title: 'How to Improve Your KD Ratio',
       excerpt: 'Expert tips from pro players on increasing kill-death ratio and win rate.',
       date: 'April 20, 2026',
@@ -51,7 +51,7 @@ export default function News() {
       image: '📈',
     },
     {
-      id: 5,
+      id: '5',
       title: 'New Map Review: Arctic Base',
       excerpt: 'Complete walkthrough and strategy guide for the newly released Arctic Base map.',
       date: 'April 15, 2026',
@@ -59,12 +59,28 @@ export default function News() {
       image: '🗺️',
     },
     {
-      id: 6,
+      id: '6',
       title: 'Account Security: Protecting Your Investment',
       excerpt: 'Learn how to keep your premium gaming account secure with our security checklist.',
       date: 'April 10, 2026',
       category: 'Security',
       image: '🔒',
+    },
+    {
+      id: '7',
+      title: 'Best Premium Accounts for Competitive Play May 2026',
+      excerpt: 'Discover the top-tier accounts perfect for competitive Call of Duty tournaments and ranked matches.',
+      date: 'May 8, 2026',
+      category: 'Review',
+      image: '⭐',
+    },
+    {
+      id: '8',
+      title: 'Cross-Platform Gaming Guide: Play on Any Device',
+      excerpt: 'Learn how to seamlessly play Call of Duty across PS5, Xbox, and PC with cross-platform progression.',
+      date: 'May 6, 2026',
+      category: 'Guide',
+      image: '🎮',
     },
   ];
 
@@ -88,16 +104,18 @@ export default function News() {
           {/* Featured Article */}
           <div className="mb-16 bg-gradient-to-r from-[#FF7828]/20 to-transparent p-8 rounded-lg border border-[#FF7828]/40">
             <div className="flex items-start gap-6">
-              <div className="text-6xl">🎮</div>
-              <div>
+              <div className="text-6xl">{articles[0].image}</div>
+              <div className="flex-1">
                 <span className="inline-block bg-[#FF7828] text-black px-3 py-1 rounded-full text-sm font-bold mb-3">FEATURED</span>
-                <h2 className="text-3xl font-bold text-[#FF7828] mb-3">Top 10 Call of Duty Strategies for Beginners</h2>
+                <h2 className="text-3xl font-bold text-[#FF7828] mb-3">{articles[0].title}</h2>
                 <p className="text-gray-300 mb-4">
-                  Master the fundamentals with our comprehensive guide to Call of Duty gameplay strategies. Learn map control, positioning, weapon selection, and team coordination techniques used by professional players.
+                  {articles[0].excerpt}
                 </p>
                 <div className="flex gap-4 items-center text-gray-400 text-sm">
-                  <span>📅 May 1, 2026</span>
-                  <span>👤 BattleGaming Team</span>
+                  <span>📅 {articles[0].date}</span>
+                  <Link href={`/news/${articles[0].id}`} className="text-[#FF7828] font-bold hover:text-[#E86B1F] transition-colors">
+                    Read More →
+                  </Link>
                 </div>
               </div>
             </div>
@@ -107,7 +125,11 @@ export default function News() {
           <h2 className="text-3xl font-bold text-[#FF7828] mb-8">Latest Articles</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.slice(1).map((article) => (
-              <div key={article.id} className="bg-[#1a1a3e]/60 rounded-lg border border-[#FF7828]/30 overflow-hidden hover:border-[#FF7828] transition-colors">
+              <Link
+                key={article.id}
+                href={`/news/${article.id}`}
+                className="bg-[#1a1a3e]/60 rounded-lg border border-[#FF7828]/30 overflow-hidden hover:border-[#FF7828] hover:shadow-lg hover:shadow-[#FF7828]/20 transition-all"
+              >
                 <div className="text-5xl p-6 bg-[#0a0410]">{article.image}</div>
                 <div className="p-6">
                   <span className="inline-block text-[#FF7828] text-xs font-bold uppercase tracking-wider mb-2">
@@ -117,13 +139,12 @@ export default function News() {
                   <p className="text-gray-400 text-sm mb-4 line-clamp-2">{article.excerpt}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-500 text-xs">{article.date}</span>
-                    <Link href={`/news/${article.id}`} className="text-[#FF7828] font-bold hover:text-[#E86B1F] transition-colors">
-                      Read More →
-                    </Link>
+                    <span className="text-[#FF7828] font-bold">Read More →</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
+          </div>
           </div>
 
           {/* Newsletter */}

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
 import CategoryNavigation from '../components/CategoryNavigation';
+import AccountsGrid from '../components/AccountsGrid';
 
 // Revalidate every 60 seconds to keep the listing fresh
 export const revalidate = 60;
@@ -117,81 +118,8 @@ export default async function AccountsPage() {
               <p className="text-gray-400 text-lg">No accounts available at the moment.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {accounts.map((account) => (
-                <Link
-                  key={account.id}
-                  href={`/accounts/${account.slug}`}
-                  className="group relative bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-lg overflow-hidden border border-[#FF7828]/20 hover:border-[#FF7828]/60 transition-all duration-300 hover:shadow-lg hover:shadow-[#FF7828]/20"
-                >
-                  {/* Card Content */}
-                  <div className="p-4 md:p-5">
-                    {/* Title */}
-                    <h3 className="font-bold text-white text-sm md:text-base mb-2 line-clamp-2 group-hover:text-[#FF7828] transition-colors">
-                      {account.meta_title}
-                    </h3>
-
-                    {/* Specs */}
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center justify-between text-xs md:text-sm">
-                        <span className="text-gray-400">Platform:</span>
-                        <span className="font-bold text-[#FF7828]">{account.platform}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs md:text-sm">
-                        <span className="text-gray-400">Wins:</span>
-                        <span className="font-bold text-green-400">{account.wins.toLocaleString()}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs md:text-sm">
-                        <span className="text-gray-400">Region:</span>
-                        <span className="font-bold text-blue-400">{account.region}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs md:text-sm">
-                        <span className="text-gray-400">Version:</span>
-                        <span className="font-bold text-gray-300">{account.game_version}</span>
-                      </div>
-                    </div>
-
-                    {/* Rating */}
-                    {account.average_rating && (
-                      <div className="mb-4 pb-4 border-b border-gray-700">
-                        <div className="flex items-center gap-1">
-                          <span className="text-yellow-400 text-sm">⭐</span>
-                          <span className="font-bold text-sm text-white">
-                            {account.average_rating.toFixed(1)}
-                          </span>
-                          <span className="text-gray-500 text-xs">
-                            ({account.review_count || 0})
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Price and Button */}
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-2xl md:text-3xl font-black text-[#FF7828]">
-                          ${account.price}
-                        </div>
-                      </div>
-                      <button className="bg-[#FF7828] hover:bg-[#ff6400] text-white font-bold px-3 md:px-4 py-2 rounded transition-colors duration-200 text-xs md:text-sm">
-                        View →
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FF7828]/0 via-[#FF7828]/5 to-[#FF7828]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                </Link>
-              ))}
-            </div>
+            <AccountsGrid initialAccounts={accounts} />
           )}
-
-          {/* Pagination Info for SEO */}
-          <div className="mt-16 pt-8 border-t border-gray-700">
-            <p className="text-center text-gray-400 text-sm">
-              Page generated with {accounts.length} accounts • Last updated: {new Date().toLocaleDateString()}
-            </p>
-          </div>
         </div>
       </section>
 
