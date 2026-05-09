@@ -20,6 +20,7 @@ export default function News() {
   const articles = [
     {
       id: '1',
+      slug: 'top-10-call-of-duty-strategies',
       title: 'Top 10 Call of Duty Strategies for Beginners',
       excerpt: 'Master the fundamentals with our comprehensive guide to Call of Duty gameplay strategies.',
       date: 'May 1, 2026',
@@ -28,6 +29,7 @@ export default function News() {
     },
     {
       id: '2',
+      slug: 'season-4-weapon-balance-update',
       title: 'Season 4 Weapon Balance Update Analysis',
       excerpt: 'We break down the latest weapon changes and how they impact competitive gameplay.',
       date: 'April 28, 2026',
@@ -36,6 +38,7 @@ export default function News() {
     },
     {
       id: '3',
+      slug: 'battlegaming-may-tournament',
       title: 'BattleGaming May Tournament Announced',
       excerpt: 'Join our biggest tournament yet with $15,000 in prizes and exclusive account rewards.',
       date: 'April 25, 2026',
@@ -44,6 +47,7 @@ export default function News() {
     },
     {
       id: '4',
+      slug: 'improve-kd-ratio-guide',
       title: 'How to Improve Your KD Ratio',
       excerpt: 'Expert tips from pro players on increasing kill-death ratio and win rate.',
       date: 'April 20, 2026',
@@ -52,6 +56,7 @@ export default function News() {
     },
     {
       id: '5',
+      slug: 'arctic-base-map-review',
       title: 'New Map Review: Arctic Base',
       excerpt: 'Complete walkthrough and strategy guide for the newly released Arctic Base map.',
       date: 'April 15, 2026',
@@ -60,6 +65,7 @@ export default function News() {
     },
     {
       id: '6',
+      slug: 'account-security-guide',
       title: 'Account Security: Protecting Your Investment',
       excerpt: 'Learn how to keep your premium gaming account secure with our security checklist.',
       date: 'April 10, 2026',
@@ -68,6 +74,7 @@ export default function News() {
     },
     {
       id: '7',
+      slug: 'best-premium-accounts-competitive-play',
       title: 'Best Premium Accounts for Competitive Play May 2026',
       excerpt: 'Discover the top-tier accounts perfect for competitive Call of Duty tournaments and ranked matches.',
       date: 'May 8, 2026',
@@ -76,6 +83,7 @@ export default function News() {
     },
     {
       id: '8',
+      slug: 'cross-platform-gaming-guide',
       title: 'Cross-Platform Gaming Guide: Play on Any Device',
       excerpt: 'Learn how to seamlessly play Call of Duty across PS5, Xbox, and PC with cross-platform progression.',
       date: 'May 6, 2026',
