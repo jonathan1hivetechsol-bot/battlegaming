@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
+import CategoryNavigation from '../components/CategoryNavigation';
 
 // Revalidate every 60 seconds to keep the listing fresh
 export const revalidate = 60;
@@ -104,6 +105,9 @@ export default async function AccountsPage() {
           </div>
         </div>
       </section>
+
+      {/* Category Navigation */}
+      <CategoryNavigation />
 
       {/* Accounts Grid */}
       <section className="relative w-full py-16 md:py-20 overflow-hidden">

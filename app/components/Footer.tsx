@@ -29,28 +29,34 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Games</h4>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Games & Platforms</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="text-gray-400 hover:text-[#FF7828] transition-colors">Black Ops 7 Accounts</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#FF7828] transition-colors">MW3 Accounts</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#FF7828] transition-colors">Warzone Accounts</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#FF7828] transition-colors">View All Accounts</a></li>
+              <li><Link href="/accounts?game=Black Ops 6" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 Black Ops 6 Accounts</Link></li>
+              <li><Link href="/accounts?game=Black Ops 7" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 Black Ops 7 Accounts</Link></li>
+              <li><Link href="/accounts?game=Modern Warfare 3" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 MW3 Accounts</Link></li>
+              <li><Link href="/accounts?game=Warzone" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 Warzone Accounts</Link></li>
+              <li><Link href="/accounts?platform=PS5" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 PlayStation 5</Link></li>
+              <li><Link href="/accounts?platform=Xbox Series X" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 Xbox Series X</Link></li>
+              <li><Link href="/accounts?platform=PC" className="text-gray-400 hover:text-[#FF7828] transition-colors">🎮 PC Accounts</Link></li>
+              <li><Link href="/accounts" className="text-gray-400 hover:text-[#FF7828] transition-colors font-bold">📦 View All Accounts</Link></li>
             </ul>
           </div>
 
           {/* Regions - USA & UK Markets */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Markets</h4>
+            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Browse By Region</h4>
             <ul className="space-y-3 text-sm">
               {/* USA Markets */}
-              <li className="text-[#FF7828] font-semibold text-xs">🇺🇸 USA</li>
-              <li className="ml-2"><a href="#accounts" className="text-gray-400 hover:text-[#FF7828] transition-colors">California</a></li>
-              <li className="ml-2"><a href="#accounts" className="text-gray-400 hover:text-[#FF7828] transition-colors">Texas</a></li>
-              <li className="ml-2"><a href="#accounts" className="text-gray-400 hover:text-[#FF7828] transition-colors">New York</a></li>
+              <li className="text-[#FF7828] font-semibold text-xs">🇺🇸 USA REGION</li>
+              <li className="ml-2"><Link href="/accounts/region/USA" className="text-gray-400 hover:text-[#FF7828] transition-colors">USA - All States</Link></li>
+              <li className="ml-2"><Link href="/accounts?region=California" className="text-gray-400 hover:text-[#FF7828] transition-colors">California Accounts</Link></li>
+              <li className="ml-2"><Link href="/accounts?region=Texas" className="text-gray-400 hover:text-[#FF7828] transition-colors">Texas Accounts</Link></li>
+              <li className="ml-2"><Link href="/accounts?region=New York" className="text-gray-400 hover:text-[#FF7828] transition-colors">New York Accounts</Link></li>
               {/* UK Markets */}
-              <li className="text-[#FF7828] font-semibold text-xs pt-2">🇬🇧 UK</li>
-              <li className="ml-2"><a href="#accounts" className="text-gray-400 hover:text-[#FF7828] transition-colors">London</a></li>
-              <li className="ml-2"><a href="#accounts" className="text-gray-400 hover:text-[#FF7828] transition-colors">Manchester</a></li>
+              <li className="text-[#FF7828] font-semibold text-xs pt-2">🇬🇧 UK REGION</li>
+              <li className="ml-2"><Link href="/accounts/region/UK" className="text-gray-400 hover:text-[#FF7828] transition-colors">UK - All Regions</Link></li>
+              <li className="ml-2"><Link href="/accounts?region=London" className="text-gray-400 hover:text-[#FF7828] transition-colors">London Accounts</Link></li>
+              <li className="ml-2"><Link href="/accounts?region=Manchester" className="text-gray-400 hover:text-[#FF7828] transition-colors">Manchester Accounts</Link></li>
             </ul>
           </div>
 

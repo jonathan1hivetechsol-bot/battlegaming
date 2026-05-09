@@ -4,6 +4,8 @@ import { Metadata } from 'next'
 import { SchemaMarkup } from '../../components/SchemaMarkup'
 import BuyNowButton from '../../components/BuyNowButton'
 import ProductWhatsAppButton from '../../components/ProductWhatsAppButton'
+import EnhancedBreadcrumb from '../../components/EnhancedBreadcrumb'
+import RelatedProducts from '../../components/RelatedProducts'
 
 // Revalidate every 60 seconds for optimal performance + fresh data
 // ISR: Pages cached for 60s, then regenerated in background
@@ -144,10 +146,13 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
       <div className="min-h-screen bg-[#0d071a] text-slate-50 font-sans selection:bg-[#FF7828]/30">
       <main className="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         
-        {/* Breadcrumb */}
-        <nav className="text-sm text-gray-400 mb-8">
-          <a href="/" className="hover:text-[#FF7828] transition-colors">Home</a> &gt; <a href="/accounts/usa-all" className="hover:text-[#FF7828] transition-colors">Accounts</a> &gt; <span className="text-[#FF7828]">{account.game_version}</span> &gt; <span className="text-[#FF7828]">{account.platform}</span>
-        </nav>
+        {/* Enhanced Breadcrumb with Category Links */}
+        <EnhancedBreadcrumb
+          gameVersion={account.game_version}
+          platform={account.platform}
+          region={account.region}
+          title={account.meta_title}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
@@ -311,6 +316,16 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
 
+        </div>
+
+        {/* Related Products Section */}
+        <div className="pt-16 border-t border-[#FF7828]/20">
+          <RelatedProducts
+            currentGame={account.game_version}
+            currentPlatform={account.platform}
+            currentRegion={account.region}
+            currentSlug={resolvedParams.slug}
+          />
         </div>
       </main>
     </div>
