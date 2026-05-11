@@ -221,6 +221,255 @@ const intentContent = {
 };
 
 // ========================================
+// GAME-PLATFORM SPECIFIC STRATEGIES (Truly Different Per Combination)
+// ========================================
+const gameStrategyByPlatform = {
+  'BO7': {
+    'PS5': [
+      'Leverage PS5 DualSense haptic feedback to feel weapon recoil and improve accuracy in competitive ranked',
+      'Master PS5 quick resume feature for rapid loadout testing during tournament preparation',
+      'Utilize adaptive trigger technology for precise burst firing control on automatic weapons',
+      'Combine PS5 performance mode with aggressive playstyles for consistent 120Hz competitive advantage',
+      'Configure PS5 Activity cards for instant jump-in access to specific game modes and lobbies'
+    ],
+    'Xbox': [
+      'Exploit Xbox Series X quick resume for seamless switching between different loadout configurations',
+      'Master cross-generation compatibility by leveraging Xbox Series X performance upgrades',
+      'Utilize Smart Delivery technology to ensure optimal BO7 performance across Xbox platforms',
+      'Configure Xbox controller profiles specifically for BO7 sensitivity and button mapping',
+      'Leverage Xbox Game Pass integration for accessing cosmetics and seasonal content availability'
+    ],
+    'PC': [
+      'Maximize 240+ FPS competitive potential with BO7 graphics optimization settings',
+      'Master mouse sensitivity calibration for pro-level tracking and flick shot precision',
+      'Utilize ultrawide monitor support (32:9) for enhanced peripheral awareness in multiplayer',
+      'Configure custom graphics presets for competitive visibility over maximum visual quality',
+      'Leverage RGB lighting and streaming setup compatibility for esports tournament readiness'
+    ]
+  },
+  'MW3': {
+    'PS5': [
+      'Master MW3 advanced weapon tuning systems using PS5 haptic feedback for attachment feedback',
+      'Leverage DualSense adaptive triggers to feel gunsmith modifications and weapon attachments',
+      'Utilize PS5 quick resume for rapid gunsmith configuration testing and loadout optimization',
+      'Combine haptic feedback with MW3 gunsmith for precise understanding of attachment impact',
+      'Use PS5 Activity cards to bookmark favorite competitive loadouts and campaign missions'
+    ],
+    'Xbox': [
+      'Synergize Xbox Series X performance with MW3 gunsmith mechanics for competitive advantage',
+      'Master cross-platform progression to maintain gunsmith optimization across device types',
+      'Utilize Xbox controller button mapping for rapid weapon attachment swapping during combat',
+      'Leverage Smart Delivery for consistent gunsmith behavior across Xbox generations',
+      'Configure Xbox Game Pass cosmetics to unlock exclusive MW3 weapon blueprints and bundles'
+    ],
+    'PC': [
+      'Configure MW3 graphics for maximum competitive visibility while maintaining 144Hz+ framerates',
+      'Master mouse DPI sensitivity for precise gunsmith range adjustments and attachment tuning',
+      'Utilize PC monitor advantages for better visual feedback on gunsmith modification impacts',
+      'Leverage custom graphics presets to highlight opponent visibility in competitive multiplayer',
+      'Configure streaming setup with RGB integration for professional esports broadcasting'
+    ]
+  },
+  'Warzone': {
+    'PS5': [
+      'Master PS5 haptic feedback for sensitivity to firing and explosive feedback during battles',
+      'Utilize quick resume to rapidly test different loadouts for specific Warzone scenarios',
+      'Leverage DualSense adaptive triggers to feel trigger discipline and firing consistency',
+      'Optimize PS5 performance mode for consistent 120Hz gameplay during late-game circles',
+      'Configure Activity cards for instant access to favorite Warzone maps and game modes'
+    ],
+    'Xbox': [
+      'Master Xbox Series X quick resume for testing multiple Warzone loadouts before matches',
+      'Exploit cross-generation compatibility to leverage performance advantages against older consoles',
+      'Utilize Xbox controller customization for rapid cash management and equipment usage',
+      'Configure Smart Delivery to ensure consistent Warzone performance in all circle situations',
+      'Leverage Game Pass cosmetics for accessing exclusive operator skins and weapon camos'
+    ],
+    'PC': [
+      'Configure Warzone graphics for competitive visibility at 240+ FPS for late-game advantage',
+      'Master mouse sensitivity calibration for rapid cash management and equipment precision',
+      'Utilize ultrawide monitor support for superior map awareness and squad positioning',
+      'Configure GPU optimization for consistent performance during dense final circle scenarios',
+      'Leverage streaming setup compatibility for professional Warzone content creation'
+    ]
+  }
+};
+
+// ========================================
+// REGION-PLATFORM SPECIFIC TIPS (Completely Unique Content Per Region-Platform)
+// ========================================
+const regionPlatformTips = {
+  'California-PS5': {
+    tips: [
+      'West Coast PS5 players exploit sub-20ms routing to LA servers for aggressive rushing tactics',
+      'Combine California latency with DualSense haptic feedback for confidence in close-quarters gunfights',
+      'Use quick resume feature to rapidly test different playstyles suited for West Coast competition',
+      'PS5 Activity cards bookmark favorite California server locations for instant access'
+    ]
+  },
+  'California-Xbox': {
+    tips: [
+      'California Xbox Series X quick resume enables rapid loadout adjustments between matches',
+      'Master West Coast server preference to minimize travel time during cross-region matchmaking',
+      'Configure Xbox controller for rapid equipment usage suited to aggressive West Coast playstyle',
+      'Leverage Game Pass cosmetics availability to stand out in California competitive lobbies'
+    ]
+  },
+  'California-PC': {
+    tips: [
+      'Configure 240+ FPS optimization for California fiber infrastructure maximum utilization',
+      'Master mouse sensitivity for aggressive rushing tactics suited to West Coast competition',
+      'Utilize ultrawide monitor setup to gain positional advantage in California tournaments',
+      'Leverage streaming setup for California esports community visibility and sponsorship opportunities'
+    ]
+  },
+  'Texas-PS5': {
+    tips: [
+      'Texas central routing balances East-West coast gameplay for adaptive competitive strategy',
+      'Leverage DualSense haptic feedback to feel server response consistency during balanced latency',
+      'Use quick resume to prepare for both aggressive and defensive playstyles mid-tournament',
+      'Configure Activity cards for both tournament and casual gaming mode rapid switching'
+    ]
+  },
+  'Texas-Xbox': {
+    tips: [
+      'Master Xbox central routing optimization for balanced competitive performance nationwide',
+      'Utilize quick resume to adapt strategies between East Coast vs West Coast tournament opponents',
+      'Configure controller profiles for both aggressive and methodical Texas tournament playstyles',
+      'Leverage Game Pass cosmetics to personalize account for Texas gaming community recognition'
+    ]
+  },
+  'Texas-PC': {
+    tips: [
+      'Configure graphics settings for Texas server optimization between 50-60ms latency consistency',
+      'Master mouse sensitivity for balanced aggressive and defensive playstyles required in Texas',
+      'Utilize monitor setup for comprehensive team coordination across diverse playstyles',
+      'Leverage streaming compatibility for Texas esports community engagement'
+    ]
+  },
+  'New York-PS5': {
+    tips: [
+      'East Coast PS5 players dominate with sub-15ms latency advantage in aggressive playstyles',
+      'Leverage DualSense haptic feedback confidence to execute fast weapon swapping in combat',
+      'Use quick resume to maintain aggressive momentum during tournament series play',
+      'PS5 Activity cards enable instant access to East Coast tournament lobbies'
+    ]
+  },
+  'New York-Xbox': {
+    tips: [
+      'New York Xbox Series X quick resume enables rapid game mode switching during tournament runs',
+      'Master East Coast server preference to maintain sub-20ms advantage throughout competition',
+      'Configure Xbox controller for rapid tactical equipment usage in fast-paced New York lobbies',
+      'Leverage Game Pass cosmetics to gain psychological edge in East Coast competitive scene'
+    ]
+  },
+  'New York-PC': {
+    tips: [
+      'Configure 240+ FPS settings to maximize New York East Coast latency advantage in gunfights',
+      'Master mouse sensitivity calibration for fast-paced East Coast rushing tactics',
+      'Utilize ultrawide monitor for superior reaction time advantage in New York tournaments',
+      'Leverage streaming setup to build New York esports content creator brand'
+    ]
+  },
+  'London-PS5': {
+    tips: [
+      'London PS5 players achieve competitive advantage with <10ms ping to local data center',
+      'Leverage DualSense haptic feedback for precision required in European tournament standards',
+      'Use quick resume for rapid map strategy adjustments specific to London server geography',
+      'PS5 Activity cards enable instant tournament lobbies for London esports events'
+    ]
+  },
+  'London-Xbox': {
+    tips: [
+      'London Xbox Series X quick resume enables rapid tournament strategy adaptation for EMEA',
+      'Master London data center routing for consistent sub-10ms ping throughout tournament series',
+      'Configure controller profiles for European competitive playstyles requiring precision',
+      'Leverage Game Pass cosmetics for EMEA region exclusive cosmetic availability'
+    ]
+  },
+  'London-PC': {
+    tips: [
+      'Configure graphics for 240+ FPS optimization leveraging London data center infrastructure',
+      'Master mouse sensitivity for European professional esports standards and tournament requirements',
+      'Utilize ultrawide monitor setup for EMEA tournament positioning and team coordination',
+      'Leverage streaming setup for London esports content creation and brand building'
+    ]
+  },
+  'Manchester-PS5': {
+    tips: [
+      'Manchester PS5 players benefit from Northern UK server optimization for console-exclusive play',
+      'Leverage DualSense haptic feedback for consistency in Manchester esports community standards',
+      'Use quick resume to prepare for multiple Manchester tournament bracket matches',
+      'PS5 Activity cards bookmark Northern UK tournament lobbies for instant access'
+    ]
+  },
+  'Manchester-Xbox': {
+    tips: [
+      'Manchester Xbox quick resume enables rapid loadout switching between Northern UK matches',
+      'Master Manchester server cluster routing for optimal performance in regional tournaments',
+      'Configure controller profiles specifically for Northern UK competitive playstyle requirements',
+      'Leverage Game Pass cosmetics for Manchester regional community recognition'
+    ]
+  },
+  'Manchester-PC': {
+    tips: [
+      'Configure graphics for Manchester server optimization maintaining competitive FPS standards',
+      'Master mouse sensitivity for Northern UK esports tournament precision requirements',
+      'Utilize monitor setup for Manchester team coordination and tournament performance',
+      'Leverage streaming setup for Manchester esports community visibility and sponsorships'
+    ]
+  },
+  'USA-PS5': {
+    tips: [
+      'USA PS5 balanced routing enables competitive play across all North American time zones',
+      'Leverage DualSense haptic feedback for consistency across diverse USA playstyles',
+      'Use quick resume to maintain competitive edge across nationwide tournament circuit',
+      'PS5 Activity cards enable instant access to preferred USA regional tournament lobbies'
+    ]
+  },
+  'USA-Xbox': {
+    tips: [
+      'USA Xbox cross-platform optimization ensures competitive viability nationwide',
+      'Master Smart Delivery for consistent performance across all USA server regions',
+      'Configure controller for USA-wide tournament standard playstyles and sensitivity',
+      'Leverage Game Pass cosmetics for nationwide gaming community recognition'
+    ]
+  },
+  'USA-PC': {
+    tips: [
+      'Configure graphics settings for USA server selection optimization based on exact location',
+      'Master mouse sensitivity for USA nationwide tournament participation standards',
+      'Utilize monitor advantages for comprehensive USA esports circuit performance',
+      'Leverage streaming setup for nationwide esports content creation opportunities'
+    ]
+  },
+  'United Kingdom-PS5': {
+    tips: [
+      'UK PS5 routing covers both London and Manchester data centers for full UK coverage',
+      'Leverage DualSense haptic feedback for UK esports community standard consistency',
+      'Use quick resume for rapid tournament preparation across multiple UK regions',
+      'PS5 Activity cards provide instant access to UK regional tournament matchmaking'
+    ]
+  },
+  'United Kingdom-Xbox': {
+    tips: [
+      'UK Xbox EMEA coverage enables competitive play across entire British Isles region',
+      'Master cross-region routing for optimal performance whether on London or Manchester servers',
+      'Configure controller for UK esports standards and competitive requirements',
+      'Leverage Game Pass cosmetics for UK gaming community wide recognition'
+    ]
+  },
+  'United Kingdom-PC': {
+    tips: [
+      'Configure graphics for UK server selection leveraging London or Manchester data centers',
+      'Master mouse sensitivity for UK nationwide esports circuit tournament requirements',
+      'Utilize monitor advantages for full UK competitive circuit performance consistency',
+      'Leverage streaming for UK esports content creation and community engagement'
+    ]
+  }
+};
+
+// ========================================
 // PLATFORM-SPECIFIC UNIQUE CONTENT (Anti-Doorway)
 // ========================================
 const platformFacts = {
@@ -275,35 +524,39 @@ const regionPlatformFacts = {
 };
 
 // ========================================
-// ADVANCED CONTENT GENERATION (Truly Unique - No Templates)
+// ADVANCED CONTENT GENERATION (FULLY UNIQUE - Dynamic Per Combination)
 // ========================================
 function generateLongFormContent(game, wins, platform, region, intent) {
   const gameKey = Object.keys(gameInsights).find(g => g.toLowerCase() === game.toLowerCase()) || 'MW3';
   const insights = gameInsights[gameKey];
   const intentInfo = intentContent[intent.intent] || { highlight: 'Premium verified account', extra: 'Full competitive readiness included' };
   
-  // Get platform-specific fact (shuffled per page)
-  const platformFact = platformFacts[platform][Math.floor(Math.random() * platformFacts[platform].length)];
+  // Get game-platform specific strategies (COMPLETELY DIFFERENT per combo)
+  const gamePlatformStrategies = gameStrategyByPlatform[game][platform];
+  const selectedStrategies = gamePlatformStrategies.slice(0, 3);
   
-  // Get region-platform combo fact (truly unique per page combination)
+  // Get region-platform specific tips (COMPLETELY DIFFERENT per combo)
   const regionPlatformKey = `${region.name}-${platform}`;
+  const regionPlatformTipsData = regionPlatformTips[regionPlatformKey];
+  const selectedRegionTips = regionPlatformTipsData ? regionPlatformTipsData.tips.slice(0, 3) : [];
+  
+  // Get platform fact
+  const platformFactList = platformFacts[platform];
+  const platformFact = platformFactList[Math.floor(Math.random() * platformFactList.length)];
+  
+  // Get region-platform combo fact
   const regionPlatformFact = regionPlatformFacts[regionPlatformKey] || `${region.name} ${platform} players benefit from optimized regional server access.`;
   
-  // Shuffle game strategies (different order per generation)
-  const shuffledStrategies = [...insights.strategies].sort(() => Math.random() - 0.5);
-  const shuffledTips = [...insights.tips].sort(() => Math.random() - 0.5);
-  const selectedFaq = insights.faq.slice(Math.floor(Math.random() * insights.faq.length), Math.floor(Math.random() * insights.faq.length) + 2);
-  
-  const strategiesList = shuffledStrategies.map(s => `<li>${s}</li>`).join('');
-  const tipsList = shuffledTips.map(t => `<li>${t}</li>`).join('');
-  const faqList = selectedFaq.map(f => `
+  const strategiesList = selectedStrategies.map(s => `<li>${s}</li>`).join('');
+  const tipsList = selectedRegionTips.map(t => `<li>${t}</li>`).join('');
+  const faqList = insights.faq.slice(0, 2).map(f => `
     <div style="margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
       <strong>Q: ${f.q}</strong><br/>
       <span style="color: #666;">${f.a}</span>
     </div>
   `).join('');
 
-  // Generate unique metrics (different per page)
+  // Generate unique metrics
   const kd = (Math.random() * 2 + 1.5).toFixed(2);
   const weapons = Math.floor(Math.random() * 15 + 20);
   const operators = Math.floor(Math.random() * 10 + 8);
@@ -311,105 +564,52 @@ function generateLongFormContent(game, wins, platform, region, intent) {
   const cosmetics = Math.floor(Math.random() * 150 + 100);
   const hoursPlayed = Math.floor(Math.random() * 500 + 100);
   
-  // Generate unique opening per region-game combination
-  const regionGameOpening = {
-    'USA': `dominating competitive ${game} ranked ladders across North American servers`,
-    'California': `crushing West Coast ${game} competition with optimized latency advantage`,
-    'Texas': `securing Central region ${game} tournament victories with balanced server access`,
-    'New York': `establishing East Coast supremacy in ${game} competitive play`,
-    'London': `proving European dominance in ${game} professional competitive circuits`,
-    'Manchester': `commanding Northern UK ${game} ranked competition with consistent performance`,
-    'United Kingdom': `representing UK excellence in ${game} competitive esports standards`
-  };
-  
-  const opening = regionGameOpening[region.name] || `competing at highest ${game} levels on ${platform}`;
-  
-  // Generate unique pro tips (different per platform-intent)
-  const proTipsPool = {
-    'instant-delivery': [
-      'Account activation is immediate - no waiting or additional setup required',
-      'Start competing within minutes of purchase completion',
-      'Skip the grind and jump directly into competitive matchmaking'
-    ],
-    'ranked-ready': [
-      'Pre-optimized loadouts for current ${game} meta-gaming strategies',
-      'Jump into ranked with professional-grade configuration already set',
-      'No time needed for leveling weapons or unlocking operators'
-    ],
-    'high-kd': [
-      'K/D metrics prove competitive skill and ranking potential',
-      'Start matches with established credibility and performance reputation',
-      'Avoid new account matchmaking restrictions and casual lobbies'
-    ],
-    'safe-verified': [
-      'Triple-verified account with zero ban history and clean status',
-      'Account safety guaranteed with comprehensive anti-fraud protection',
-      'Full ownership transfer with permanent account security'
-    ]
-  };
-  
-  const proTips = proTipsPool[intent.intent] || ['Premium account with full competitive advantages included'];
-  const selectedProTip = proTips[Math.floor(Math.random() * proTips.length)];
-  
-  // SHUFFLE paragraph order for true uniqueness
-  const paragraphs = [
-    `<h3>${platform}-Optimized Performance Configuration</h3>
-<p>${platformFact} This ensures zero performance disadvantages during competitive ranked matches. Your ${game} account on ${platform} delivers maximum responsiveness for your preferred gaming environment.</p>`,
-
-    `<h3>${region.name} Server Infrastructure & Latency Optimization</h3>
-<p>${regionPlatformFact} This ${game} account is pre-configured with ${region.name} server preference, delivering consistent sub-50ms latency during ranked play. Your competitive performance on ${platform} reaches peak potential with region-platform-specific optimizations.</p>`,
-
-    `<h3>Account Statistics & Competitive Credentials</h3>
-<p>This verified ${game} account demonstrates documented competitive achievement with ${wins} verified ranked wins on ${platform} in the ${region.name} region. The account features an established K/D ratio of ${kd}, reflecting consistent high-performance gameplay. With ${hoursPlayed}+ hours of competitive investment, this account establishes immediate credibility in ranked matchmaking.</p>`,
-
-    `<h3>Why This Account is Perfect for Your Gaming Goals</h3>
-<p><strong>${intentInfo.highlight}:</strong> ${intentInfo.extra} This ${game} account on ${platform} gives you immediate competitive advantages for ${region.name} ranked play. ${selectedProTip}</p>`,
-
-    `<h3>${game} Competitive Strategy Guide</h3>
-<ul>
-  ${strategiesList}
-</ul>`,
-
-    `<h3>Ranked Success Tips for ${region.name} Players</h3>
-<ul>
-  ${tipsList}
-</ul>`,
-
-    `<h3>Expert Insights About This Account</h3>
-<p>This ${game} ${platform} account represents a proven competitive investment for ${region.name} gamers seeking immediate ranked advantages. The ${wins}-win history establishes legitimate competitive credentials while the unlocked cosmetics and weapons provide psychological confidence. For players serious about ${region.name} ranked dominance, this verified account represents exceptional value.</p>`,
-
-    `<h3>Frequently Asked Questions</h3>
-${faqList}`,
-
-    `<h3>Complete Account Package Includes</h3>
-<ul>
-  <li>✓ ${wins} Verified Competitive Wins (${game} ${platform})</li>
-  <li>✓ ${weapons}+ Fully Unlocked & Leveled Weapons</li>
-  <li>✓ ${operators} Competitive Operator Loadouts</li>
-  <li>✓ ${blueprints} Premium Weapon Blueprint Configurations</li>
-  <li>✓ $${cosmetics} Value in Exclusive Cosmetics</li>
-  <li>✓ ${platform}-Specific Performance Optimization</li>
-  <li>✓ ${region.name} Server Preference Configuration</li>
-  <li>✓ 100% Verified Ban-Free Account History</li>
-  <li>✓ Lifetime Account Protection & Security</li>
-  <li>✓ 24/7 Premium Support from BattleGaming Team</li>
-</ul>`,
-
-    `<h3>Join Thousands of Satisfied ${region.country} Competitors</h3>
-<p>BattleGaming has delivered verified ${game} accounts to over 50,000+ competitive players worldwide, with exceptional satisfaction ratings across ${region.country}. This ${game} account on ${platform} with ${wins} wins represents the premium quality and instant delivery that BattleGaming guarantees. Our customers report faster ranked progression, improved competitive standings, and confident gameplay from day one. Don't delay your competitive journey - claim this verified ${game} account and start ${opening} today.</p>`,
-
-    `<p><strong>Delivery Status:</strong> In Stock | <strong>Setup Time:</strong> 3-5 Minutes | <strong>Verification:</strong> Certified Complete | <strong>Support:</strong> 24/7 Live Available | <strong>Guarantee:</strong> Lifetime Protection</p>`
-  ];
-  
-  // Shuffle all paragraphs for true uniqueness (except last status line stays at bottom)
-  const lastParagraph = paragraphs.pop();
-  const shuffledParagraphs = paragraphs.sort(() => Math.random() - 0.5);
-  shuffledParagraphs.push(lastParagraph);
-  
   return `
 <h2>Premium ${game} Account on ${platform} for ${region.name}</h2>
 
-${shuffledParagraphs.join('\n\n')}
+<h3>Why ${platform} ${game} Players Choose This Account</h3>
+<p>This ${game} account on ${platform} is specifically optimized for ${region.name} competitive players. With ${wins} verified competitive wins, this account establishes immediate credibility in ranked matchmaking. ${platformFact}</p>
+
+<h3>Regional Optimization for ${region.name}</h3>
+<p>${regionPlatformFact} This account is pre-configured with ${region.name} server settings, ensuring optimal performance for regional gameplay. Your competitive edge is guaranteed with ${region.latency} configuration.</p>
+
+<h3>${game} Strategy Guide for ${platform}</h3>
+<ul>
+  ${strategiesList}
+</ul>
+
+<h3>${region.name}-Specific Ranked Success Tips</h3>
+<ul>
+  ${tipsList}
+</ul>
+
+<h3>Account Statistics</h3>
+<p>This verified ${game} account demonstrates documented competitive achievement with ${wins} verified ranked wins on ${platform} in ${region.name}. K/D Ratio: ${kd} | Hours Played: ${hoursPlayed}+ | ${weapons}+ Unlocked Weapons | ${operators} Operator Loadouts</p>
+
+<h3>Why This Account is Perfect for ${intent.label}</h3>
+<p><strong>${intentInfo.highlight}:</strong> ${intentInfo.extra} Get immediate ${region.name} ${game} competitive advantages with this verified account.</p>
+
+<h3>Account Features</h3>
+<ul>
+  <li>✓ ${wins} Verified Competitive Wins</li>
+  <li>✓ ${weapons}+ Fully Unlocked Weapons</li>
+  <li>✓ ${operators} Professional Operators</li>
+  <li>✓ ${blueprints} Strategic Blueprints</li>
+  <li>✓ $${cosmetics} Cosmetics Value</li>
+  <li>✓ ${platform} Performance Optimized</li>
+  <li>✓ ${region.name} Server Preference</li>
+  <li>✓ Zero Ban History Verified</li>
+  <li>✓ Lifetime Protection</li>
+  <li>✓ 24/7 Premium Support</li>
+</ul>
+
+<h3>Frequently Asked Questions</h3>
+${faqList}
+
+<h3>Get Started Today</h3>
+<p>Join ${region.country} competitive gamers with this verified ${game} account. Instant delivery within 3-5 minutes. No setup needed - start playing immediately on ${platform}. BattleGaming's 24/7 support team is ready to assist.</p>
+
+<p><strong>Status:</strong> In Stock | <strong>Delivery:</strong> 3-5 Min | <strong>Verified:</strong> 100% | <strong>Support:</strong> 24/7</p>
   `.trim();
 }
 
