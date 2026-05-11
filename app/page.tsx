@@ -147,9 +147,12 @@ export default async function Home() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-gray-300 text-base md:text-lg max-w-md mb-8 leading-relaxed font-light">
+            <p className="text-gray-300 text-base md:text-lg max-w-lg mb-4 leading-relaxed font-light">
               Elite verified Call of Duty accounts with <span className="text-[#FF7828] font-semibold">lightning-fast delivery</span>, 
               <span className="text-[#FF7828] font-semibold"> military-grade security</span>, and <span className="text-[#FF7828] font-semibold">lifetime support</span>.
+            </p>
+            <p className="text-gray-400 text-sm md:text-base max-w-lg mb-8 leading-relaxed">
+              BattleGaming is the world's most trusted premium gaming accounts marketplace, serving 50,000+ players worldwide. Our 1260+ verified accounts offer exceptional value with instant delivery, transparent pricing, and industry-leading customer support available 24/7/365.
             </p>
 
             {/* Stats Badges */}
@@ -253,8 +256,67 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Why Choose BattleGaming Section */}
+      <section className="py-20 px-4 bg-black/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase mb-4">
+              <span className="text-white">Why </span>
+              <span className="text-[#FF7828]">BattleGaming</span>
+              <span className="text-white">?</span>
+            </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">Join thousands of satisfied gamers who trust BattleGaming for premium accounts, exceptional service, and unbeatable value.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-[#1a1a3e]/50 border border-[#FF7828]/30 rounded-xl p-8 hover:border-[#FF7828] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,120,40,0.2)]">
+              <div className="text-4xl mb-3">🔒</div>
+              <h3 className="text-xl font-bold text-white mb-3">100% Verified & Secure</h3>
+              <p className="text-gray-400 leading-relaxed">Every account undergoes rigorous verification for authenticity, security, and anti-cheat compliance. Your purchase is protected by our 30-day money-back guarantee.</p>
+            </div>
+            
+            <div className="bg-[#1a1a3e]/50 border border-[#FF7828]/30 rounded-xl p-8 hover:border-[#FF7828] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,120,40,0.2)]">
+              <div className="text-4xl mb-3">⚡</div>
+              <h3 className="text-xl font-bold text-white mb-3">Instant Delivery</h3>
+              <p className="text-gray-400 leading-relaxed">Receive your account within 3 minutes of purchase, 24 hours a day, 7 days a week. Our automated system ensures fast, reliable delivery every single time.</p>
+            </div>
+            
+            <div className="bg-[#1a1a3e]/50 border border-[#FF7828]/30 rounded-xl p-8 hover:border-[#FF7828] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,120,40,0.2)]">
+              <div className="text-4xl mb-3">🌍</div>
+              <h3 className="text-xl font-bold text-white mb-3">Global Support</h3>
+              <p className="text-gray-400 leading-relaxed">Expert support team available in multiple languages with response times under 2 minutes. Serving players in USA, UK, and Europe with regional optimization.</p>
+            </div>
+            
+            <div className="bg-[#1a1a3e]/50 border border-[#FF7828]/30 rounded-xl p-8 hover:border-[#FF7828] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,120,40,0.2)]">
+              <div className="text-4xl mb-3">💰</div>
+              <h3 className="text-xl font-bold text-white mb-3">Best Value</h3>
+              <p className="text-gray-400 leading-relaxed">Transparent pricing with zero hidden fees. Compare our prices and quality - BattleGaming offers the best value in the industry with competitive rates.</p>
+            </div>
+            
+            <div className="bg-[#1a1a3e]/50 border border-[#FF7828]/30 rounded-xl p-8 hover:border-[#FF7828] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,120,40,0.2)]">
+              <div className="text-4xl mb-3">⭐</div>
+              <h3 className="text-xl font-bold text-white mb-3">5-Star Reviews</h3>
+              <p className="text-gray-400 leading-relaxed">Join 50,000+ satisfied customers with an average rating of 4.9/5 stars. Read genuine customer reviews and testimonials from verified buyers.</p>
+            </div>
+            
+            <div className="bg-[#1a1a3e]/50 border border-[#FF7828]/30 rounded-xl p-8 hover:border-[#FF7828] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,120,40,0.2)]">
+              <div className="text-4xl mb-3">🎮</div>
+              <h3 className="text-xl font-bold text-white mb-3">All Platforms</h3>
+              <p className="text-gray-400 leading-relaxed">Support for PS5, Xbox, and PC. All accounts optimized for your specific platform with cross-platform compatibility options available.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Accounts Section with Interactive Grid */}
       <section id="accounts" className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black uppercase text-center mb-4">
+            <span className="text-white">Browse Premium </span>
+            <span className="text-[#FF7828]">Accounts</span>
+          </h2>
+          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">Explore our carefully curated selection of 1260+ verified accounts. Use filters to find exactly what you're looking for.</p>
+        </div>
         <Suspense fallback={<div className="h-96 bg-[#1a1a3e]/30 rounded-lg animate-pulse max-w-6xl mx-auto" />}>
           <AccountsGrid initialAccounts={accounts} />
         </Suspense>
