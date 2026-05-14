@@ -351,7 +351,7 @@ export function generateUniquePageContent(params: ContentParams): {
   } = params;
 
   // Get platform-specific strategies
-  const platformStrategies = gameStrategyByPlatform[game as keyof typeof gameStrategyByPlatform]?.[platform as keyof any] || {};
+  const platformStrategies = (gameStrategyByPlatform[game as keyof typeof gameStrategyByPlatform] as any)?.[platform] || {};
   
   // Get region-platform tips
   const regionKey = region === 'New York' ? 'NewYork' : region;
