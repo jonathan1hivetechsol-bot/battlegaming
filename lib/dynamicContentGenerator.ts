@@ -346,7 +346,7 @@ export function generateUniquePageContent(params: ContentParams): {
     regionCode,
     wins,
     intent,
-    kd = (Math.random() * 2 + 1.5).toFixed(2),
+    kd = Math.random() * 2 + 1.5,
     price = 9.99 + wins * 0.5 + (Math.random() * 20)
   } = params;
 
@@ -470,7 +470,7 @@ A: Yes. Complete account ownership transfer allows full customization of cosmeti
 | **Game** | ${game} |
 | **Platform** | ${platform} |
 | **Competitive Wins** | ${wins}+ |
-| **K/D Ratio** | ${kd} verified |
+| **K/D Ratio** | ${typeof kd === 'number' ? kd.toFixed(2) : kd} verified |
 | **Region Optimized** | ${region} |
 | **Cosmetics Value** | $${Math.floor(Math.random() * 150 + 100)}+ |
 | **Ban History** | Zero - fully verified |

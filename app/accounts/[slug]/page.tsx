@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     regionCode: data.region_code || '',
     wins: data.wins,
     intent: data.intent_category || 'ranked-ready',
-    kd: (Math.random() * 2 + 1.5).toFixed(2),
+    kd: Math.random() * 2 + 1.5,
     price: data.price
   });
 
@@ -139,7 +139,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
     regionCode: account.region_code || '',
     wins: account.wins,
     intent: account.intent_category || 'ranked-ready',
-    kd: (Math.random() * 2 + 1.5).toFixed(2),
+    kd: Math.random() * 2 + 1.5,
     price: account.price
   });
 
