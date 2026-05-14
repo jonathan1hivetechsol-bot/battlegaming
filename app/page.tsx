@@ -8,6 +8,7 @@ interface Account {
   id: string;
   slug: string;
   meta_title: string;
+  meta_description?: string;
   game_version: string;
   platform: string;
   region: string;
@@ -23,7 +24,7 @@ interface Account {
 async function getAllAccounts() {
   const { data: accounts, error } = await supabase
     .from('cod_accounts')
-    .select('id, slug, meta_title, game_version, platform, region, wins, price, average_rating, review_count, reviews, unique_description, buying_amount')
+    .select('id, slug, meta_title, meta_description, game_version, platform, region, wins, price, average_rating, review_count, reviews, unique_description, buying_amount')
     .order('created_at', { ascending: false });
 
   if (error) {
@@ -489,7 +490,7 @@ export default async function Home() {
                 position: index + 1,
                 url: `https://battlegaming.store/accounts/${account.slug}`,
                 name: account.meta_title,
-                description: account.meta_description,
+                description: account.meta_description || account.unique_description || 'Premium verified gaming account',
                 offers: {
                   '@type': 'Offer',
                   price: account.price.toString(),
