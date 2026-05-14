@@ -158,16 +158,16 @@ export default async function Home() {
             {/* Stats Badges */}
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <div className="bg-black/40 border border-[#FF7828]/40 rounded-xl px-5 py-3 backdrop-blur-sm hover:border-[#FF7828] transition-colors">
-                <p className="text-[#FF7828] font-black text-xl">45+</p>
-                <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">Premium Accounts</p>
+                <p className="text-[#FF7828] font-black text-xl">{accounts.length}+</p>
+                <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">Dynamic Accounts</p>
               </div>
               <div className="bg-black/40 border border-[#FF7828]/40 rounded-xl px-5 py-3 backdrop-blur-sm hover:border-[#FF7828] transition-colors">
-                <p className="text-[#FF7828] font-black text-xl">24/7</p>
+                <p className="text-[#FF7828] font-black text-xl">3-5min</p>
                 <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">Instant Delivery</p>
               </div>
               <div className="bg-black/40 border border-[#FF7828]/40 rounded-xl px-5 py-3 backdrop-blur-sm hover:border-[#FF7828] transition-colors">
                 <p className="text-[#FF7828] font-black text-xl">100%</p>
-                <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">Verified</p>
+                <p className="text-gray-400 text-xs uppercase tracking-wider font-semibold">Unique Content</p>
               </div>
             </div>
 
@@ -320,6 +320,64 @@ export default async function Home() {
         <Suspense fallback={<div className="h-96 bg-[#1a1a3e]/30 rounded-lg animate-pulse max-w-6xl mx-auto" />}>
           <AccountsGrid initialAccounts={accounts} />
         </Suspense>
+
+      {/* Featured Accounts - Showcasing Dynamic Content */}
+      <section className="py-16 px-4 border-t border-[#FF7828]/20 mt-12">
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-3xl md:text-4xl font-black uppercase text-center mb-8">
+            <span className="text-[#FF7828]">Dynamic</span>
+            <span className="text-white"> Content Per Region & Platform</span>
+          </h3>
+          <p className="text-gray-400 text-center mb-12">Each account combination has unique, optimized content for maximum search visibility</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* California Examples */}
+            <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 rounded-lg p-6 hover:border-[#FF7828]/60 transition-all">
+              <p className="text-xs uppercase tracking-widest text-[#FF7828] font-bold mb-2">🌴 California Region</p>
+              <h4 className="text-white font-black mb-3">West Coast Optimized</h4>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li>✓ <strong>PS5:</strong> DualSense haptic optimization</li>
+                <li>✓ <strong>Xbox:</strong> MS West Coast servers</li>
+                <li>✓ <strong>PC:</strong> 240+ FPS fiber routing</li>
+                <li>✓ <span className="text-[#FF7828]">&lt;15ms latency guaranteed</span></li>
+              </ul>
+              <a href="/accounts?region=California" className="text-[#FF7828] text-sm font-semibold mt-4 inline-block hover:underline">
+                Browse California Accounts →
+              </a>
+            </div>
+
+            {/* UK Examples */}
+            <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 rounded-lg p-6 hover:border-[#FF7828]/60 transition-all">
+              <p className="text-xs uppercase tracking-widest text-[#FF7828] font-bold mb-2">🇬🇧 UK Region</p>
+              <h4 className="text-white font-black mb-3">EU Optimized</h4>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li>✓ <strong>London:</strong> Ultra-low latency</li>
+                <li>✓ <strong>Manchester:</strong> North UK focused</li>
+                <li>✓ <strong>All Platforms:</strong> EU server routing</li>
+                <li>✓ <span className="text-[#FF7828]">&lt;8ms latency guaranteed</span></li>
+              </ul>
+              <a href="/accounts?region=London" className="text-[#FF7828] text-sm font-semibold mt-4 inline-block hover:underline">
+                Browse UK Accounts →
+              </a>
+            </div>
+
+            {/* Game Specific */}
+            <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 rounded-lg p-6 hover:border-[#FF7828]/60 transition-all">
+              <p className="text-xs uppercase tracking-widest text-[#FF7828] font-bold mb-2">🎮 Game Specific</p>
+              <h4 className="text-white font-black mb-3">Optimized Per Game</h4>
+              <ul className="space-y-2 text-gray-300 text-sm">
+                <li>✓ <strong>BO7:</strong> Movement & reaction focus</li>
+                <li>✓ <strong>MW3:</strong> Gunsmith customization</li>
+                <li>✓ <strong>Warzone:</strong> Battle royale strategy</li>
+                <li>✓ <span className="text-[#FF7828]">Completely unique content per game</span></li>
+              </ul>
+              <a href="/accounts" className="text-[#FF7828] text-sm font-semibold mt-4 inline-block hover:underline">
+                Browse All Games →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
         
         {/* CRAWLER-FRIENDLY LINKS (Hidden but crawlable) */}
         {/* Fixes: Low Discovery + Broken paths */}
@@ -379,6 +437,72 @@ export default async function Home() {
             highPrice: Math.max(...accounts.map(a => a.price)),
             offerCount: accounts.length,
             url: 'https://battlegaming.store/accounts',
+          }),
+        }}
+      />
+
+      {/* ORGANIZATION SCHEMA - Establishes BattleGaming Authority */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'BattleGaming',
+            url: 'https://battlegaming.store',
+            description: 'Premium verified Call of Duty gaming accounts with instant delivery, dynamic content optimization per region and platform, and 24/7 customer support.',
+            contactPoint: {
+              '@type': 'ContactPoint',
+              contactType: 'Customer Support',
+              availableLanguage: ['en'],
+              areaServed: ['US', 'UK', 'CA'],
+            },
+            sameAs: ['https://twitter.com/BattleGaming'],
+            reviews: {
+              '@type': 'Review',
+              reviewRating: {
+                '@type': 'Rating',
+                ratingValue: '4.9',
+                bestRating: '5',
+              },
+              reviewCount: `${accounts.reduce((sum, a) => sum + (a.review_count || 0), 0)}`,
+            },
+          }),
+        }}
+      />
+
+      {/* DYNAMIC ACCOUNTS COLLECTION SCHEMA */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'Premium Call of Duty Accounts',
+            description: `Browse ${accounts.length}+ dynamically optimized gaming accounts with unique content per region, platform, and game combination.`,
+            url: 'https://battlegaming.store/accounts',
+            mainEntity: {
+              '@type': 'ItemList',
+              numberOfItems: accounts.length,
+              itemListElement: accounts.slice(0, 20).map((account, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                url: `https://battlegaming.store/accounts/${account.slug}`,
+                name: account.meta_title,
+                description: account.meta_description,
+                offers: {
+                  '@type': 'Offer',
+                  price: account.price.toString(),
+                  priceCurrency: 'USD',
+                  availability: 'https://schema.org/InStock',
+                },
+                aggregateRating: account.average_rating ? {
+                  '@type': 'AggregateRating',
+                  ratingValue: account.average_rating.toString(),
+                  reviewCount: account.review_count || 0,
+                } : undefined,
+              })),
+            },
           }),
         }}
       />
