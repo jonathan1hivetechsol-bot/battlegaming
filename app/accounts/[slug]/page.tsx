@@ -6,6 +6,8 @@ import BuyNowButton from '../../components/BuyNowButton'
 import ProductWhatsAppButton from '../../components/ProductWhatsAppButton'
 import EnhancedBreadcrumb from '../../components/EnhancedBreadcrumb'
 import RelatedProducts from '../../components/RelatedProducts'
+import OptimizedAccountContent from '../../components/OptimizedAccountContent'
+import { getOptimizedAccountContent } from '../../../lib/optimizedContent'
 
 // Revalidate every 60 seconds for optimal performance + fresh data
 // ISR: Pages cached for 60s, then regenerated in background
@@ -117,6 +119,9 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  // Load 1500+ word optimized content
+  const optimizedContent = getOptimizedAccountContent(resolvedParams.slug);
+
   const canonicalUrl = `${baseUrl}/accounts/${resolvedParams.slug}`;
 
   return (
@@ -156,27 +161,40 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          {/* Left Column: Content */}
+          {/* Left Column: Optimized Content */}
           <div className="lg:col-span-2 space-y-8">
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-[#FF7828] to-[#FF7828] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,120,40,0.3)]">
               {account.meta_title}
             </h1>
             
-            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed bg-[#1a1a3e]/40 p-6 rounded-lg border border-[#FF7828]/20">
-              <div dangerouslySetInnerHTML={{ __html: account.page_content }} />
-            </div>
+            {/* 1500+ Word Optimized Content */}
+            {optimizedContent && (
+              <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
+                <OptimizedAccountContent 
+                  slug={resolvedParams.slug}
+                  content={optimizedContent}
+                />
+              </div>
+            )}
+
+            {/* Fallback: Legacy page content if optimized content not available */}
+            {!optimizedContent && account.page_content && (
+              <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed bg-[#1a1a3e]/40 p-6 rounded-lg border border-[#FF7828]/20">
+                <div dangerouslySetInnerHTML={{ __html: account.page_content }} />
+              </div>
+            )}
 
             {/* Unique Description Section */}
             {account.unique_description && (
               <div className="bg-gradient-to-r from-[#FF7828]/10 to-transparent p-6 rounded-lg border border-[#FF7828]/30">
-                <h2 className="text-xl font-bold text-[#FF7828] mb-3">Account Details</h2>
+                <h2 className="text-xl font-bold text-[#FF7828] mb-3">Additional Account Details</h2>
                 <p className="text-gray-300 leading-relaxed">{account.unique_description}</p>
               </div>
             )}
 
             {/* Reviews Section */}
             {account.reviews && account.reviews.length > 0 && (
-              <div className="space-y-4">
+              <div className="space-y-4 pt-8 border-t border-[#FF7828]/20">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-bold text-white">Customer Reviews</h2>
                   <div className="flex items-center gap-2">
@@ -221,7 +239,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             )}
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-[#FF7828]/20">
               <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
                 <p className="text-sm text-gray-400 mb-2">Game</p>
                 <p className="font-black text-[#FF7828] text-lg">{account.game_version}</p>
@@ -236,7 +254,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
               </div>
               <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
                 <p className="text-sm text-gray-400 mb-2">Delivery</p>
-                <p className="font-black text-[#FF7828] text-lg">{account.delivery_time}</p>
+                <p className="font-black text-[#FF7828] text-lg">{account.delivery_time || 'Instant'}</p>
               </div>
               <div className="bg-[#1a1a3e]/60 border border-[#FF7828]/30 p-6 rounded-xl hover:border-[#FF7828]/60 transition-all duration-300">
                 <p className="text-sm text-gray-400 mb-2">Sold</p>
