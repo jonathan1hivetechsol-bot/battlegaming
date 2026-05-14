@@ -7,7 +7,7 @@ import ProductWhatsAppButton from '../../components/ProductWhatsAppButton'
 import EnhancedBreadcrumb from '../../components/EnhancedBreadcrumb'
 import RelatedProducts from '../../components/RelatedProducts'
 import OptimizedAccountContent from '../../components/OptimizedAccountContent'
-import { getOptimizedAccountContent } from '../../../lib/optimizedContent'
+import { generateUniquePageContent } from '../../../lib/dynamicContentGenerator'
 
 // Revalidate every 60 seconds for optimal performance + fresh data
 // ISR: Pages cached for 60s, then regenerated in background
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   const { data } = await supabase
     .from('cod_accounts')
-    .select('meta_title, meta_description, game_version, platform, wins, region, price, unique_description, average_rating, buying_amount, review_count')
+    .select('meta_title, meta_description, game_version, platform, wins, region, price, unique_description, average_rating, buying_amount, review_count, intent_category, region_code')
     .eq('slug', resolvedParams.slug)
     .single();
 
@@ -45,16 +45,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  // Generate truly unique content for this specific page
+  const generatedContent = generateUniquePageContent({
+    game: data.game_version,
+    platform: data.platform,
+    region: data.region,
+    regionCode: data.region_code || '',
+    wins: data.wins,
+    intent: data.intent_category || 'ranked-ready',
+    kd: (Math.random() * 2 + 1.5).toFixed(2),
+    price: data.price
+  });
+
   // Self-referencing canonical URL (CRITICAL for duplicate prevention)
   const canonicalUrl = `${baseUrl}/accounts/${resolvedParams.slug}`;
 
   // Ensure description is <= 155 chars
-  const description = data.meta_description.length > 155
-    ? data.meta_description.substring(0, 152) + '...'
-    : data.meta_description;
+  const description = generatedContent.description.length > 155
+    ? generatedContent.description.substring(0, 152) + '...'
+    : generatedContent.description;
 
   return {
-    title: data.meta_title,
+    title: generatedContent.title,
     description: description,
     keywords: `${data.game_version} account, ${data.platform}, ${data.wins} wins, ${data.region}, verified account, instant delivery, real reviews, trusted seller`,
     
@@ -75,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     // Open Graph for Social Media - Include rating and reviews
     openGraph: {
-      title: data.meta_title,
+      title: generatedContent.title,
       description: `${description} | ⭐ ${data.average_rating?.toFixed(1) || '5.0'}/5 (${data.review_count || 0} reviews)`,
       url: canonicalUrl,
       type: 'website',
@@ -95,7 +107,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // Twitter Card for Social Media
     twitter: {
       card: 'summary_large_image',
-      title: data.meta_title,
+      title: generatedContent.title,
       description: `⭐ ${data.average_rating?.toFixed(1) || '5.0'}/5 • ${description.substring(0, 100)}...`,
       images: [`${baseUrl}/og-image.png`],
       creator: '@BattleGaming',
@@ -119,8 +131,17 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
-  // Load 1500+ word optimized content
-  const optimizedContent = getOptimizedAccountContent(resolvedParams.slug);
+  // Generate TRULY UNIQUE content dynamically for this specific page
+  const dynamicContent = generateUniquePageContent({
+    game: account.game_version,
+    platform: account.platform,
+    region: account.region,
+    regionCode: account.region_code || '',
+    wins: account.wins,
+    intent: account.intent_category || 'ranked-ready',
+    kd: (Math.random() * 2 + 1.5).toFixed(2),
+    price: account.price
+  });
 
   const canonicalUrl = `${baseUrl}/accounts/${resolvedParams.slug}`;
 
@@ -164,25 +185,13 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
           {/* Left Column: Optimized Content */}
           <div className="lg:col-span-2 space-y-8">
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-white via-[#FF7828] to-[#FF7828] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,120,40,0.3)]">
-              {account.meta_title}
+              {dynamicContent.title}
             </h1>
             
-            {/* 1500+ Word Optimized Content */}
-            {optimizedContent && (
-              <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
-                <OptimizedAccountContent 
-                  slug={resolvedParams.slug}
-                  content={optimizedContent}
-                />
-              </div>
-            )}
-
-            {/* Fallback: Legacy page content if optimized content not available */}
-            {!optimizedContent && account.page_content && (
-              <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed bg-[#1a1a3e]/40 p-6 rounded-lg border border-[#FF7828]/20">
-                <div dangerouslySetInnerHTML={{ __html: account.page_content }} />
-              </div>
-            )}
+            {/* Dynamically Generated Unique Content */}
+            <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
+              <div dangerouslySetInnerHTML={{ __html: dynamicContent.pageContent.replace(/\n/g, '<br/>') }} />
+            </div>
 
             {/* Unique Description Section */}
             {account.unique_description && (
