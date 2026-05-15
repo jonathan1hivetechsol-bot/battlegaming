@@ -8,6 +8,7 @@ import EnhancedBreadcrumb from '../../components/EnhancedBreadcrumb'
 import RelatedProducts from '../../components/RelatedProducts'
 import OptimizedAccountContent from '../../components/OptimizedAccountContent'
 import { generateUniquePageContent } from '../../../lib/dynamicContentGenerator'
+import { markdownToHtml } from '../../../lib/markdownParser'
 
 // Revalidate every 60 seconds for optimal performance + fresh data
 // ISR: Pages cached for 60s, then regenerated in background
@@ -190,7 +191,7 @@ export default async function AccountPage({ params }: { params: Promise<{ slug: 
             
             {/* Dynamically Generated Unique Content */}
             <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
-              <div dangerouslySetInnerHTML={{ __html: dynamicContent.pageContent.replace(/\n/g, '<br/>') }} />
+              <div dangerouslySetInnerHTML={{ __html: markdownToHtml(dynamicContent.pageContent) }} />
             </div>
 
             {/* Unique Description Section */}
