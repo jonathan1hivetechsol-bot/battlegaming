@@ -1,12 +1,20 @@
-import { createClient } from '@supabase/supabase-js';
+﻿import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+import ws from 'ws';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+dotenv.config({ path: '.env.local' });
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  realtime: {
+    transport: ws
+  }
+});
 
 // High-quality, unique descriptions for different account types
-const descriptions: { [key: string]: string[] } = {
+const descriptions = {
   warzone: [
     "Pro-level Warzone account with 2.5+ KD and 850+ wins. Fully verified with premium weapon loadouts, tier 1 operators, and optimized classes. This account features unlocked Dual-Wield builds and Damascus camo. Perfect for competitive play.",
     "High-rank Warzone account featuring 1200+ wins, 2.8 KD ratio, and all latest season blueprints. Pre-configured with meta loadouts, mastered SMG/AR combinations, and ready for immediate competitive matches.",
@@ -45,130 +53,54 @@ const descriptions: { [key: string]: string[] } = {
 };
 
 // High-quality, realistic reviews
-const reviews: { [key: string]: any[] } = {
+const reviews = {
   high_rating: [
-    {
-      reviewer_name: "Alex_Gaming",
-      rating: 5,
-      review_text: "Amazing account! Exactly as described. Fast delivery and already ranked up. Highly recommended for serious players.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Pro_Player_2024",
-      rating: 5,
-      review_text: "Perfect account with all the loadouts optimized. Already competed in matches with this setup. Great value!",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Gaming_Enthusiast",
-      rating: 5,
-      review_text: "Legit account. All cosmetics work perfectly. The KD ratio matches exactly. Will buy again!",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Casual_Gamer88",
-      rating: 4,
-      review_text: "Good account, very satisfied. Took about 30 mins for delivery but worth the wait. All features working.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Competitive_Edge",
-      rating: 5,
-      review_text: "This is the best investment for ranked play. Account performs exactly as advertised. Zero issues.",
-      verified_purchase: true
-    }
+    { reviewer_name: "Alex_Gaming", rating: 5, review_text: "Amazing account! Exactly as described. Fast delivery and already ranked up. Highly recommended for serious players.", verified_purchase: true },
+    { reviewer_name: "Pro_Player_2024", rating: 5, review_text: "Perfect account with all the loadouts optimized. Already competed in matches with this setup. Great value!", verified_purchase: true },
+    { reviewer_name: "Gaming_Enthusiast", rating: 5, review_text: "Legit account. All cosmetics work perfectly. The KD ratio matches exactly. Will buy again!", verified_purchase: true },
+    { reviewer_name: "Casual_Gamer88", rating: 4, review_text: "Good account, very satisfied. Took about 30 mins for delivery but worth the wait. All features working.", verified_purchase: true },
+    { reviewer_name: "Competitive_Edge", rating: 5, review_text: "This is the best investment for ranked play. Account performs exactly as advertised. Zero issues.", verified_purchase: true }
   ],
   medium_rating: [
-    {
-      reviewer_name: "Player_1987",
-      rating: 4,
-      review_text: "Good account with decent stats. Delivery was quick. Recommend for players wanting a head start.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Multiplayer_Fan",
-      rating: 4,
-      review_text: "Solid account. All weapons working as expected. Good balance of cosmetics and progression.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Gaming_Squad",
-      rating: 5,
-      review_text: "Purchased for my friend. He's loving it! Perfect for squads and casual play.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Next_Gen_Player",
-      rating: 4,
-      review_text: "Great experience. Account is clean and verified. Would buy again.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "FPS_Master",
-      rating: 5,
-      review_text: "Exceeded expectations. Incredible value. The customization options are endless!",
-      verified_purchase: true
-    }
+    { reviewer_name: "Player_1987", rating: 4, review_text: "Good account with decent stats. Delivery was quick. Recommend for players wanting a head start.", verified_purchase: true },
+    { reviewer_name: "Multiplayer_Fan", rating: 4, review_text: "Solid account. All weapons working as expected. Good balance of cosmetics and progression.", verified_purchase: true },
+    { reviewer_name: "Gaming_Squad", rating: 5, review_text: "Purchased for my friend. He's loving it! Perfect for squads and casual play.", verified_purchase: true },
+    { reviewer_name: "Next_Gen_Player", rating: 4, review_text: "Great experience. Account is clean and verified. Would buy again.", verified_purchase: true },
+    { reviewer_name: "FPS_Master", rating: 5, review_text: "Exceeded expectations. Incredible value. The customization options are endless!", verified_purchase: true }
   ],
   premium_accounts: [
-    {
-      reviewer_name: "Esports_Team_Member",
-      rating: 5,
-      review_text: "Professional quality account. Used immediately in competitive matches. Flawless execution.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Streamer_Pro",
-      rating: 5,
-      review_text: "Perfect for streaming. Account history is clean, all cosmetics visible, great for content creation.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Tournament_Ready",
-      rating: 5,
-      review_text: "Exactly what we needed for tournament preparation. Stats verified, everything legitimate.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Elite_Gamer",
-      rating: 5,
-      review_text: "Premium account with premium service. Delivery faster than expected. Absolutely satisfied.",
-      verified_purchase: true
-    },
-    {
-      reviewer_name: "Gaming_Legend",
-      rating: 5,
-      review_text: "This is what world-class gaming accounts look like. Highly professional service throughout.",
-      verified_purchase: true
-    }
+    { reviewer_name: "Esports_Team_Member", rating: 5, review_text: "Professional quality account. Used immediately in competitive matches. Flawless execution.", verified_purchase: true },
+    { reviewer_name: "Streamer_Pro", rating: 5, review_text: "Perfect for streaming. Account history is clean, all cosmetics visible, great for content creation.", verified_purchase: true },
+    { reviewer_name: "Tournament_Ready", rating: 5, review_text: "Exactly what we needed for tournament preparation. Stats verified, everything legitimate.", verified_purchase: true },
+    { reviewer_name: "Elite_Gamer", rating: 5, review_text: "Premium account with premium service. Delivery faster than expected. Absolutely satisfied.", verified_purchase: true },
+    { reviewer_name: "Gaming_Legend", rating: 5, review_text: "This is what world-class gaming accounts look like. Highly professional service throughout.", verified_purchase: true }
   ]
 };
 
 // Price ranges based on account value
 const priceRanges = {
-  beginner: { min: 8, max: 12 },      // 8-12$
-  intermediate: { min: 12, max: 16 }, // 12-16$
-  advanced: { min: 16, max: 20 },     // 16-20$
-  elite: { min: 18, max: 20 }         // 18-20$
+  beginner: { min: 8, max: 12 },
+  intermediate: { min: 12, max: 16 },
+  advanced: { min: 16, max: 20 },
+  elite: { min: 18, max: 20 }
 };
 
-function getRandomPrice(min: number, max: number): number {
+function getRandomPrice(min, max) {
   return Math.round((Math.random() * (max - min) + min) * 100) / 100;
 }
 
-function getRandomElement<T>(array: T[]): T {
+function getRandomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function getRandomReviews(): any[] {
+function getRandomReviews() {
   const reviewCategories = Object.values(reviews);
   const selectedReviews = getRandomElement(reviewCategories);
-  // Return 2-5 random reviews
   const count = Math.floor(Math.random() * 4) + 2;
   return selectedReviews.sort(() => Math.random() - 0.5).slice(0, count);
 }
 
-function calculateAverageRating(reviewList: any[]): number {
+function calculateAverageRating(reviewList) {
   const total = reviewList.reduce((sum, review) => sum + review.rating, 0);
   return Math.round((total / reviewList.length) * 100) / 100;
 }
@@ -197,18 +129,13 @@ async function updateAccountsData() {
     let updatedCount = 0;
 
     for (const account of accounts) {
-      // Determine game type for description
       const gameType = account.game_version?.toLowerCase().replace(/\s+/g, '_') || 'warzone';
       const gameDescriptions = descriptions[gameType] || descriptions.warzone;
       
-      // Select unique description
       const uniqueDescription = getRandomElement(gameDescriptions);
-      
-      // Get reviews and calculate average
       const accountReviews = getRandomReviews();
       const averageRating = calculateAverageRating(accountReviews);
       
-      // Determine price tier based on wins and KD
       let priceRange = priceRanges.beginner;
       if (account.wins > 1000) {
         priceRange = priceRanges.elite;
@@ -219,7 +146,7 @@ async function updateAccountsData() {
       }
       
       const newPrice = getRandomPrice(priceRange.min, priceRange.max);
-      const buyingAmount = Math.floor(Math.random() * 150) + 10; // 10-160 purchases
+      const buyingAmount = Math.floor(Math.random() * 150) + 10;
 
       const { error: updateError } = await supabase
         .from('cod_accounts')
@@ -240,7 +167,6 @@ async function updateAccountsData() {
         console.log(`✓ Updated ${account.slug}: $${newPrice} | ${accountReviews.length} reviews | ${buyingAmount} purchases`);
       }
 
-      // Add small delay to avoid rate limiting
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
