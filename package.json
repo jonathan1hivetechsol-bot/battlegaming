@@ -20,6 +20,9 @@
     "dev": "next dev",
     "build": "next build",
     "check-sitemap": "node ./scripts/check_sitemap.js",
+    "split-sitemap": "node ./scripts/split_sitemap.js",
+    "scan-duplicates": "node ./scripts/scan_duplicates.js",
+    "ping-search-engines": "node ./scripts/ping_search_engines.js",
     "start": "next start",
     "lint": "eslint"
   },

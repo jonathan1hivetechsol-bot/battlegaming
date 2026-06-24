@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-const https = require('https');
-const { parse } = require('node:util');
-const { XMLParser } = require('fast-xml-parser');
+import https from 'https';
 
 async function fetchText(url) {
   return new Promise((resolve, reject) => {
@@ -13,6 +11,16 @@ async function fetchText(url) {
   });
 }
 
+function extractUrlsFromSitemap(xml) {
+  const urls = [];
+  const regex = /<loc>(.*?)<\/loc>/gi;
+  let match;
+  while ((match = regex.exec(xml)) !== null) {
+    urls.push(match[1].trim());
+  }
+  return urls;
+}
+
 async function main() {
   const sitemapUrl = process.argv[2] || 'https://battlegaming.store/sitemap.xml';
   console.log('Fetching sitemap:', sitemapUrl);
@@ -22,18 +30,11 @@ async function main() {
     process.exit(2);
   }
 
-  const parser = new XMLParser({ ignoreAttributes: false });
-  const parsed = parser.parse(sitemap.body);
-  const urls = [];
-  if (parsed.urlset && parsed.urlset.url) {
-    const list = Array.isArray(parsed.urlset.url) ? parsed.urlset.url : [parsed.urlset.url];
-    for (const u of list) {
-      if (u.loc) urls.push(u.loc);
-    }
-  }
-
+  const urls = extractUrlsFromSitemap(sitemap.body);
   console.log(`Found ${urls.length} URLs in sitemap. Sampling up to 200 for checks.`);
   const sample = urls.slice(0, 200);
+  console.log('Sampled URLs (first 10):');
+  console.log(sample.slice(0, 10).join('\n'));
 
   const results = [];
   for (const url of sample) {
