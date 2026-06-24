@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "check-sitemap": "node ./scripts/check_sitemap.js",
     "start": "next start",
     "lint": "eslint"
   },
