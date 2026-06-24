@@ -74,7 +74,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 w-32">
             <a href="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
               <Image
-                src="/logo.svg"
+                src="/logo.avif"
                 alt="BattleGaming"
                 width={140}
                 height={40}

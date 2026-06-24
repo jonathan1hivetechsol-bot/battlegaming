@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import CursorGlow from "./components/CursorGlow";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { OrganizationSchema } from "./components/SchemaMarkup";
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
   description: "Buy verified Call of Duty accounts with exclusive stats and instant delivery. Trusted globally in USA, UK, & Europe. Lifetime guarantees. Shop BattleGaming today!",
   keywords: "Call of Duty accounts, CoD accounts, verified accounts, instant delivery, USA, UK, Europe",
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon.avif',
   },
   robots: {
     index: true,
@@ -78,15 +77,8 @@ export default function RootLayout({
     >
       <head>
         {/* Preload critical resources */}
-        <link rel="preload" as="font" href="/fonts/geist-sans.woff2" type="font/woff2" crossOrigin="anonymous" />
-        
-        {/* Prefetch DNS for external services */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://pkvpfqxqhvyzmcjbplwx.supabase.co" />
-        
-        {/* Preconnect to critical third-party origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://pkvpfqxqhvyzmcjbplwx.supabase.co" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href="/blackops7heroimage.avif" />
+        <link rel="preload" as="image" href="/logo.avif" />
         
         {/* Critical CSS inline - Prevent render-blocking */}
         <style dangerouslySetInnerHTML={{
@@ -112,9 +104,6 @@ export default function RootLayout({
         <AuthProvider>
           {/* Scroll to Top on Navigation */}
           <ScrollToTop />
-          
-          {/* Custom Cursor Glow - Ultra High Z-Index for Universal Top Visibility */}
-          <CursorGlow />
           
           {/* Navbar - Optimized Component */}
           <Navbar />

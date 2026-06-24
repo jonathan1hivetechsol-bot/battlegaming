@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabase';
 import { Suspense } from 'react';
+import Image from 'next/image';
 import AccountsGrid from './components/AccountsGrid';
 
 export const revalidate = 60; // ISR - revalidate every 60 seconds for fresh pricing/reviews
@@ -202,10 +203,14 @@ export default async function Home() {
               
               {/* Image Container */}
               <div className="absolute inset-0 m-2 rounded-lg overflow-hidden bg-gradient-to-b from-black/20 to-black/40 shadow-2xl">
-                <img
-                  src="/blackops7heroimage.jpg"
+                <Image
+                  src="/blackops7heroimage.avif"
                   alt="Black Ops 7 Hero"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(min-width: 1024px) 380px, 100vw"
+                  quality={75}
+                  priority
+                  className="object-cover"
                   style={{
                     filter: 'brightness(0.85) contrast(1.4) saturate(1.1) hue-rotate(0deg)',
                   }}
