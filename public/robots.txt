@@ -57,3 +57,5 @@ Disallow: /
 # Sitemap locations
 Sitemap: https://battlegaming.store/sitemap.xml
 Sitemap: https://battlegaming.store/sitemap.xml?type=accounts
+Sitemap: https://battlegaming.store/sitemap-index.xml
+Sitemap: https://battlegaming.store/sitemap-root.xml
